@@ -28,6 +28,8 @@ class TCalendario
 		int mes;
 		int anyo;
 		char* mens;
+		
+		bool CheckDate(int, int, int);
 }
 
 

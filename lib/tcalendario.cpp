@@ -1,4 +1,4 @@
-#include "tacalendario.h"
+#include "tcalendario.h"
 #include <string.h>
 
 TCalendario::TCalendario()
@@ -7,35 +7,31 @@ TCalendario::TCalendario()
 TCalendario::TCalendario(int xdia, int xmes, int xanyo, char* xmens)
 {
 	
-	if( xdia >= 1 && xdia <= 31 && xmes >= 1 && xmes <= 12 && anyo >= 1990 )
+	
+	
+	if( CheckDate(xdia, xmes, xanyo) )
 	{
 		dia = xdia;
 		mes = xmes;
 		anyo = xanyo;
-	}
-	else 
-	{
-		dia = 1;
-		mes = 1;
-		anyo = 1990;
-	}
-	
-	int lon = 0,i = 0;
-	
-	if( xmens == NULL )
-	{
-		mens = NULL;
-	}
-	else
-	{
-		lon = strlen(xmens);
+			
+		int lon = 0,i = 0;
 		
-		for( ; i < lon; i++ )
+		if( xmens == NULL )
 		{
-			mens[i] = xmens[i];
+			mens = NULL;
 		}
-		mens[i] = '/0';
-	{
+		else
+		{
+			lon = strlen(xmens);
+			
+			for( ; i < lon; i++ )
+			{
+				mens[i] = xmens[i];
+			}
+			mens[i] = '/0';
+		}
+	}
 }
 
 TCalendario::TCalendario( const TCalendario &c )
@@ -92,6 +88,118 @@ TCalendario::operator=( const TCalendario & c)
 
 	return *this;
 }
+
+bool
+TCalendario CheckDate(int dia, int mes, int anyo)
+{
+	//Comprobar la fecha
+	bool correcto = false;
+	bool bisiesto = false;
+	
+	if ( anyo >= 1900 )
+	{
+			if( anyo%4 == 0)
+			{
+					//Primer nivel bisiesto
+				if( anyo%100 == 0)
+				{
+						//Puede que no sea.. a no ser... 400
+						if ( anyo%400 == 0)
+						{
+							//Es bisiesto....
+							bisiesto = true;
+						}
+						else bisiesto = false;
+						
+				}
+				else bisiesto = true;
+			}
+			
+			switch (mes)
+			{
+				case 1: 
+				{
+					if( dia >= 1 && dia <= 31 ) correcto = true;
+				
+					break;
+				}
+				
+				case 2: 
+				{	
+					if( bisiesto )
+					{
+						if( dia >= 1 && dia <= 29 ) correcto = true;
+					}
+					else if( dia >= 1 && dia <= 28 ) correcto = true;
+									
+					break;
+				}
+				
+				case 3:
+				{	
+					if( dia >= 1 && dia <= 31 ) correcto = true;
+					
+					break;
+				}
+				
+				case 4:
+				{	
+					if( dia >= 1 && dia <= 30 ) correcto = true;
+					break;
+				}
+				
+				case 5:
+				{	
+					if( dia >= 1 && dia <= 31 ) correcto = true;
+					break;
+				}	
+				
+				case 6:
+				{	
+					if( dia >= 1 && dia <= 30 ) correcto = true;
+					break;
+				}	
+				
+				case 7:
+				{	
+					if( dia >= 1 && dia <= 31 ) correcto = true;
+					break;
+				}		
+					
+				case 8:
+				{	
+					if( dia >= 1 && dia <= 31 ) correcto = true;
+					break;
+				}	
+				
+				case 9:
+				{	
+					if( dia >= 1 && dia <= 30 ) correcto = true;
+					break;
+				}	
+				
+				case 10:
+				{	
+					if( dia >= 1 && dia <= 31 ) correcto = true;
+					break;
+				}
+				case 11:
+				{	
+					if( dia >= 1 && dia <= 30 ) correcto = true;
+					break;
+				}	
+				case 12:
+				{	
+					if( dia >= 1 && dia <= 31 ) correcto = true;
+					break;
+				}	
+			}
+			
+	}
+	
+	return correcto;
+}
+
 
 TCalendario operator+(int d)
 {
