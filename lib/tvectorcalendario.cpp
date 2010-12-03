@@ -24,7 +24,7 @@ TVectorCalendario::TVectorCalendario( const int dim )
 
 		c = NULL;
 	}
-	else
+	else 
 	{
 		tamano = dim;
 
@@ -34,8 +34,11 @@ TVectorCalendario::TVectorCalendario( const int dim )
 
 TVectorCalendario::TVectorCalendario( const TVectorCalendario & v )
 {
-
-
+	if (tamano!=0)
+	{
+		delete [] c;
+	}
+	
 	if( v.tamano == 0 )
 	{
 		tamano = 0;
@@ -189,8 +192,36 @@ TVectorCalendario::ExisteCal( const TCalendario &calen)
 	return existe;
 }
 
-void MostrarMensajes(int d, int m, int a )
+void 
+TVectorCalendario::MostrarMensajes(int d, int m, int a )
 {
+	TCalendario aux(d,m,a,"");
+	
+	cout << "[";
+	if( d==m==1 && a==1900)//en este caso mostramos
+	{}
+	else
+	{
+		//sacamos vacio
+		if (aux.Dia()==aux.Mes()==1 && aux.Anyo()==1900)//en este caso la fecha de parametros es incorrecta
+		{}
+		else for (int i = 0; i <tamano  ; i++)
+		{
+				if (c[i]==aux)
+				{	
+					
+					if(i == tamano-1) cout<<c[i];
+					else cout<<c[i]<<", ";
+				}
+				else if (c[i]>aux)
+				{
+					if(i == tamano-1) cout<<c[i];
+					else cout<<c[i]<<", ";
+				}
+		}
+	}
+	
+	cout << "]";
 
 }
 
@@ -246,7 +277,7 @@ operator<<( ostream& os, const TVectorCalendario &v )
 
 		for( ; i < v.Tamano(); i++)
 		{
-			os << ", " << i+1 << v.c[i];
+			os << ", (" << i+1 <<") " << v.c[i];
 		}
 	}
 

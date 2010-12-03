@@ -2,19 +2,12 @@
 
 using namespace std;
 
-#include "tcalendario.h"
+#include "tvectorcalendario.h"
 
 int
-main()
+main(void)
 {
-   char fi[] = "Fecha incorrecta";
-   char fc[] = "Fecha correcta";
-   
-   TCalendario cal1(29,2,2006, fi);
-   TCalendario cal2(20,11,1880, fi);
-   TCalendario cal3(1,12,2006, fc);
- 
-   cout<<cal1<<endl;
-   cout<<cal2<<endl;
-   cout<<cal3<<endl;
+   TVectorCalendario a, b, c;
+   cout << "No hace nada" << endl;
+   return 0;
 }

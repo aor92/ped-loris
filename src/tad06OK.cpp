@@ -2,27 +2,30 @@
 
 using namespace std;
 
-#include "tcalendario.h"
-
+#include "tvectorcalendario.h"
 
 int
-main()
+main(void)
 {
-   char fi[] = "Fecha incorrecta";
-   char fc[] = "Fecha correcta";
-      
-   TCalendario c1(14,12,1966, fc);
-   TCalendario c2(19,11,1994, fc);
-   TCalendario c3(01,01,1900, fc);
-   c2=c1--;
-   cout<<c2<<endl;
-   cout<<c1<<endl;
+   TVectorCalendario a(3), b(3);
+   TCalendario ca1(1,1,2006, (char*) "uno"), ca2(1,2,2006, (char*) "dos"), ca3(1,3,2006, (char*) "tres");
+   a[3] = ca3;
    
-   c2=--c1;
-   cout<<c2<<endl;
-   cout<<c1<<endl;
+   b[1] = ca1;
+   b[3] = ca3;
    
-   c2=--c3;
-   cout<<c2<<endl;
+   cout << "a=" << a << endl;
+   cout << "b=" << b << endl;
    
+   if(a.ExisteCal(ca1))
+      cout << "Existe" << endl;
+   else
+      cout << "No existe" << endl;
+   
+   if(b.ExisteCal(ca1))
+      cout << "Existe" << endl;
+   else
+      cout << "No existe" << endl;
+   
+   return 0;
 }

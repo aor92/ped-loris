@@ -2,21 +2,15 @@
 
 using namespace std;
 
-#include "tcalendario.h"
-
+#include "tvectorcalendario.h"
 
 int
-main()
+main(void)
 {
-   char fi[] = "Fecha incorrecta";
-   char fc[] = "Fecha correcta";
-      
-   TCalendario cal1(12,12,2006, fc);
-   TCalendario cal2(cal1);
- 
-   cout<<cal1<<endl;
-   cout<<cal2<<endl;
-   cal1.~TCalendario();
-   cout<<cal1<<endl;
-   cout<<cal2<<endl;
+   TVectorCalendario a, b(-3), c(4);
+   cout << a.Tamano() << endl;
+   cout << b.Tamano() << endl;
+   cout << c.Tamano() << endl;
+   cout << c.Ocupadas() << endl;
+   return 0;
 }
