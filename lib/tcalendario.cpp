@@ -295,7 +295,7 @@ void TCalendario::ModMensaje(const char *m){
 	if(m!=NULL){
 		mens=new char[strlen(m)+1];
 		strcpy(mens,m);
-		mens[strlen(m)]='\0'; //incecesario?
+		mens[strlen(m)]='\0';
 	};
 }
 
