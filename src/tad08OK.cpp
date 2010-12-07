@@ -3,47 +3,26 @@
 using namespace std;
 
 #include "tcalendario.h"
-
+#include "tpilacalendario.h"
 
 int
-main()
+main(void)
 {
-   char fi[] = "Fecha incorrecta";
-   char fc[] = "Fecha correcta";
+  TCalendario c1(1, 1, 2001, (char*) "Fecha Correcta");
+  TCalendario c2(1, 1, 2002, (char*) "Fecha Correcta");
+  TCalendario c3(1, 1, 2003, (char*) "Fecha Correcta");
+  TCalendario c4(1, 1, 2004, (char*) "Fecha Correcta");
+  TPilaCalendario p1, p2;
       
-   TCalendario c1(14,12,1966, fc);
-   TCalendario c2(19,11,1994, fc);
-   TCalendario c3(01,01,1900, fc);
-   TCalendario c4(14,12,1966, fc);
+  p1.Apilar(c1); 
+  p1.Apilar(c2);
+  p2.Apilar(c2);
+  p2.Apilar(c3);
+  p2.Apilar(c4);
 
-   if (c1==c4)
-   cout<<"operador == funciona"<<endl;
-   else
-   cout<<"operador == no funciona"<<endl;
-   
-   if (c2==c3)
-   cout<<"operador == no funciona"<<endl;
-   else
-   cout<<"operador == funciona"<<endl;
+	cout<<p1<<"   "<<p1.Longitud()<<endl;
+	cout<<p2<<"   "<<p2.Longitud()<<endl;
+  cout << (p1 - p2) << endl;
 
-   
-   if (c1>c2)
-   cout<<"operador > no funciona"<<endl;
-   else 
-   cout<<"operador > funciona"<<endl;
-
-   if (c3<c4)
-   cout<<"operador < funciona"<<endl;
-   else
-   cout<<"operador < no funciona"<<endl;
-
-   if (c1<c4)
-   cout<<"operador < no funciona"<<endl;
-   else
-   cout<<"operador < funciona"<<endl;
-
-   if (c1>c4)
-   cout<<"operador > no funciona"<<endl;
-   else
-   cout<<"operador > funciona"<< endl;
+  return 0;
 }

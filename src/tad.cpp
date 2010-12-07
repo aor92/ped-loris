@@ -10,19 +10,19 @@ main(void)
 {
   TCalendario c1(14, 12, 1966, (char*) "Fecha Correcta");
   TCalendario c2(1, 1, 1954, (char*) "Fecha Correcta");
-  TPilaCalendario p1, p2;
-      
+  TPilaCalendario p1;
+
+  cout << p1 << endl;
+  
   p1.Apilar(c1); 
   p1.Apilar(c2);
-  p2.Apilar(c1); 
 
-	TPilaCalendario aux=p1-p2;
-	cout<<aux<<endl;
-  cout << (p1 - p2) << endl;
+  cout << p1 << endl;
 
-  p2.Apilar(c2);
+  p1.Desapilar();
+  p1.Desapilar();
 
-  cout << (p1 - p2) << endl;
+  cout << p1 << endl;
 
   return 0;
 }

@@ -185,15 +185,19 @@ TVectorCalendario::Ocupadas() const
 bool
 TVectorCalendario::ExisteCal(TCalendario &calen) const
 {
-	bool existe = false;
+	bool encontrado=false;
+	int i=0;
 	
-	for( int i = 0; i < tamano && !existe; i++)
+	while((i<tamano)&&(!encontrado))
 	{
-		if ( c[i] == calen )
-			existe = true;
+		if (c[i]==calen) 
+		{
+			encontrado=true;
+		}
+		i++;
 	}
-
-	return existe;
+	
+	return encontrado;
 }
 
 void 

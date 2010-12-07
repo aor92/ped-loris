@@ -90,11 +90,13 @@ TPilaCalendario::operator-(const TPilaCalendario& pila)
 {
 	TPilaCalendario aux;
 	TCalendario aux2;
-	for(int i=1;i<Longitud();i++)
+	for(int i=1;i<=Longitud();i++)
 	{
+		cout<<pila.v.ExisteCal(v[i])<<endl;
 		if (!pila.v.ExisteCal(v[i]))
 		{
-			aux2=pila.v[i];
+			cout<< i <<"    " <<Longitud() <<endl;
+			aux2=v[i];
 			aux.Apilar(aux2);
 		}
 		
@@ -157,17 +159,20 @@ TPilaCalendario::Desapilar()
 
 ostream& operator<<(ostream &os, const TPilaCalendario &pila)
 {
-	os << "{";
-	int posicion = pila.posicion;
-  	if(posicion > 1)
-  	{
-    		os << pila.v[posicion-1];
-		for(int i = posicion-2; i >= 1; i--)
+	TPilaCalendario tmp;
+	tmp=pila;
+	os<<"{";
+	
+	while(tmp.NoVacios()>0)
+	{
+		os<<tmp.Cima();
+		tmp.Desapilar();
+		if(tmp.NoVacios()>0)
 		{
-			os << " " <<pila.v[i];
+			os<<" ";
 		}
-  	}
-  	os << "}";
+	}
+	os<<"}";
 	
 	return os;
 }

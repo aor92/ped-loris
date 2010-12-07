@@ -3,32 +3,26 @@
 using namespace std;
 
 #include "tcalendario.h"
-
+#include "tpilacalendario.h"
 
 int
-main()
+main(void)
 {
-   TCalendario c1;
+  TCalendario c1(14, 12, 1966, (char*) "Fecha Correcta");
+  TCalendario c2(1, 1, 1954, (char*) "Fecha Correcta");
+  TPilaCalendario p1, p2;
+      
+  p1.Apilar(c1); 
+  p1.Apilar(c2);
+  p2.Apilar(c1); 
+  
+  cout<<"primer operator"<<endl;
+  cout << (p1 - p2) << endl;
 
-   if (c1.ModFecha(29,02,2006))  
-   cout<<"Procedimiento ModFecha correcto"<<endl;
-   else
-   cout<<"Procedimiento ModFecha incorrecto"<<endl;
+  p2.Apilar(c2);
 
-   if (c1.ModFecha(1,1,1900))
-   cout<<"Procedimiento ModFecha correcto"<<endl;
-   else
-   cout<<"Procedimiento ModFecha incorrecto"<<endl;
+  cout<<"segundo operator"<<endl;
+  cout << (p1 - p2) << endl;
 
-   if (c1.ModFecha(20,10,1800))
-   cout<<"Procedimiento ModFecha correcto"<<endl;
-   else
-   cout<<"Procedimiento ModFecha incorrecto"<<endl;
-
-   if (c1.ModFecha(40,10,1900))
-   cout<<"Procedimiento ModFecha correcto"<<endl;
-   else
-   cout<<"Procedimiento ModFecha incorrecto"<<endl;
-
-
+  return 0;
 }
