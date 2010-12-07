@@ -2,25 +2,60 @@
 
 using namespace std;
 
-#include "tvectorcalendario.h"
+#include "tcalendario.h"
+#include "tpilacalendario.h"
 
 int
 main(void)
 {
-   TVectorCalendario a(3), b(3), c;
-   TCalendario ca1(1,1,2006,(char*) "uno"), ca2(1,2,2006, (char*) "dos"), ca3(1,3,2006, (char*) "tres");
-   
-   a[3] = ca3;
-   
-   b[1] = ca1;
-   b[3] = ca3;
-   
-   cout << "a=" << a << endl;
-   cout << a.Ocupadas() << endl;
-   cout << "b=" << b << endl;
-   cout << b.Ocupadas() << endl;
-   cout << "c=" << c << endl;
-   cout << c.Ocupadas() << endl;
+  TCalendario c1(14, 12, 1966, (char*) "Fecha Correcta");
+  TCalendario c2(1, 1, 1954, (char*) "Fecha Correcta");
+  TPilaCalendario p1;
 
-   return 0;
+  if(p1.EsVacia()) 
+	cout << "pila vacia" << endl;
+  else 
+	cout << "pila no vacia" << endl;
+  
+  p1.Apilar(c1); 
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  p1.Apilar(c2);
+  
+  if(p1.EsVacia()) 
+	cout << "pila vacia" << endl;
+  else 
+	cout << "pila no vacia" << endl;
+
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+  p1.Desapilar();
+
+  if(p1.EsVacia()) 
+	cout << "pila vacia" << endl;
+  else 
+	cout << "pila no vacia" << endl;
+
+  return 0;
 }

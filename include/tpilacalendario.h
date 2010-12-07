@@ -5,13 +5,13 @@
 
 class TPilaCalendario
 {
-	friend ostream & operator<<(ostream &, TPilaCalendario &);
+	friend ostream& operator<<(ostream &, const TPilaCalendario &);
 	
 	public:
 		TPilaCalendario();
 		~TPilaCalendario();
 		TPilaCalendario(const TPilaCalendario&);
-		TPilaCalendario& operator=(const TPilaCalendario);
+		TPilaCalendario& operator=(const TPilaCalendario&);
 		
 		bool Apilar(TCalendario&);
 		bool Desapilar();

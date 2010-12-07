@@ -109,7 +109,7 @@ public:
 	int Ocupadas() const;
 
 	
-	bool ExisteCal( const TCalendario &);
+	bool ExisteCal(TCalendario&)const;
 	
 	void MostrarMensajes( const int, const int, const int);
 	

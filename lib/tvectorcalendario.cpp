@@ -12,8 +12,6 @@ TVectorCalendario::TVectorCalendario()
 	tamano = 0;
 
 	c = NULL;
-
-
 }
 
 TVectorCalendario::TVectorCalendario( const int dim )
@@ -66,6 +64,12 @@ TVectorCalendario::~TVectorCalendario()
 TVectorCalendario&
 TVectorCalendario::operator =( const TVectorCalendario &v)
 {
+	if (c!=NULL)
+	{
+		delete [] c;
+		c=NULL;
+	}
+	
 	if( this != &v)
 	{
 
@@ -179,7 +183,7 @@ TVectorCalendario::Ocupadas() const
 }
 
 bool
-TVectorCalendario::ExisteCal( const TCalendario &calen)
+TVectorCalendario::ExisteCal(TCalendario &calen) const
 {
 	bool existe = false;
 	

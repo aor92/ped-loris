@@ -3,16 +3,18 @@ using namespace std;
 
 #include "tpilacalendario.h"
 
-TPilaCalendario::TpilaCalendario()
+TPilaCalendario::TPilaCalendario()
 {
-		posicion=0;
-		v.Resimensionar(10);
+	TVectorCalendario tmp(10);
+	posicion=0;
+	v=tmp;
 }
 
 
 TPilaCalendario::TPilaCalendario(const TPilaCalendario& pila)
 {
 	posicion=pila.posicion;
+	
 	for (int i = 0; i < pila.v.Tamano(); i++)
 	{
 		v[i]=pila.v[i];
@@ -27,7 +29,7 @@ TPilaCalendario::operator =(const TPilaCalendario& pila)
 		{
 			for (int i = 0; i < pila.v.Tamano(); i++)
 			{
-				delete v[i];
+				v[i].~TCalendario();
 			}
 		}
 		if (this!=NULL)
@@ -44,15 +46,15 @@ TPilaCalendario::operator =(const TPilaCalendario& pila)
 
 TPilaCalendario::~TPilaCalendario()
 {
-		posicion=1;
-		delete []v;
+		posicion=0;
+		v.~TVectorCalendario();;
 }
 
-
+bool
 TPilaCalendario::EsVacia()
 {
 	bool vacia=false;
-		if (v.Tamano()==0)
+		if (posicion==0)
 		{
 			vacia=true;
 		}
@@ -74,7 +76,7 @@ TPilaCalendario::operator!=(const TPilaCalendario& pila)
 int
 TPilaCalendario::Longitud() const 
 {
-	return posicion-1;
+	return posicion;
 }
 
 int 
@@ -83,19 +85,22 @@ TPilaCalendario::NoVacios() const
 	return posicion;
 }
 
-TPilaCalendario::operator -(const TPilaCalendario pila)
+TPilaCalendario
+TPilaCalendario::operator-(const TPilaCalendario& pila)
 {
-	TPilaCalendario tmp;
-	
-	for(int i=1;i<=posicion;i++)
-	{ 
-		if(!PC.v.ExisteCal(v[i]))
+	TPilaCalendario aux;
+	TCalendario aux2;
+	for(int i=1;i<Longitud();i++)
+	{
+		if (!pila.v.ExisteCal(v[i]))
 		{
-			tmp.Apilar(v[i]);
+			aux2=pila.v[i];
+			aux.Apilar(aux2);
 		}
+		
 	}
 	
-	return tmp;
+	return aux;
 }
 
 TCalendario
@@ -106,7 +111,7 @@ TPilaCalendario::Cima()
 
 
 bool
-TPilaCalendario::Apilar(const TCalendario& cal)
+TPilaCalendario::Apilar(TCalendario& cal)
 {
 	if(NoVacios()<Longitud())
 	{
@@ -131,12 +136,38 @@ TPilaCalendario::Desapilar()
 	
 	if(posicion > 0)
 	{
-		if (posicion % 10 == 1 && posicion > 10) v.Redimensionar(v.Longitud()-10);
-		v[posicion].~TPoro();
-		posicion--;
-		desapi=true;
+		if (posicion % 10 == 1 && posicion > 10) 
+		{
+			v.Redimensionar(v.Tamano()-10);
+			//~ v[posicion].~TCalendario();
+			posicion--;
+			desapi=true;
+		}
+		else
+		{
+			//~ v[posicion].~TCalendario();
+			posicion--;
+			desapi=true;
+		}
+		
 	}
-	else desapi=false;
 	
 	return desapi;
+}
+
+ostream& operator<<(ostream &os, const TPilaCalendario &pila)
+{
+	os << "{";
+	int posicion = pila.posicion;
+  	if(posicion > 1)
+  	{
+    		os << pila.v[posicion-1];
+		for(int i = posicion-2; i >= 1; i--)
+		{
+			os << " " <<pila.v[i];
+		}
+  	}
+  	os << "}";
+	
+	return os;
 }

@@ -2,30 +2,27 @@
 
 using namespace std;
 
-#include "tvectorcalendario.h"
+#include "tcalendario.h"
+#include "tpilacalendario.h"
 
 int
 main(void)
 {
-   TVectorCalendario a(3), b(3);
-   TCalendario ca1(1,1,2006, (char*) "uno"), ca2(1,2,2006, (char*) "dos"), ca3(1,3,2006, (char*) "tres");
-   
-   b[1] = ca1;
-   b[2] = ca2;
-   b[3] = ca3;
-   
-   cout << "a=" << a << endl;
-   cout << "b=" << b << endl;
+  TCalendario c1(14, 12, 1966, (char*) "Fecha Correcta");
+  TCalendario c2(1, 1, 1954, (char*) "Fecha Correcta");
+  TPilaCalendario p1, p2;
+      
+  p1.Apilar(c1); 
+  p1.Apilar(c2);
+  p2.Apilar(c1); 
 
-   a = b;
-   
-   cout << "a=" << a << endl;
-   cout << "b=" << b << endl;
+	TPilaCalendario aux=p1-p2;
+	cout<<aux<<endl;
+  cout << (p1 - p2) << endl;
 
-   b.Redimensionar(1);
+  p2.Apilar(c2);
 
-   cout << "a=" << a << endl;
-   cout << "b=" << b << endl;
-   
-   return 0;
+  cout << (p1 - p2) << endl;
+
+  return 0;
 }
