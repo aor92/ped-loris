@@ -82,7 +82,8 @@ TPilaCalendario::Longitud() const
 int 
 TPilaCalendario::NoVacios() const 
 {
-	return posicion;
+	//~ return posicion;
+	return v.Ocupadas();
 }
 
 TPilaCalendario
@@ -92,10 +93,10 @@ TPilaCalendario::operator-(const TPilaCalendario& pila)
 	TCalendario aux2;
 	for(int i=1;i<=Longitud();i++)
 	{
-		cout<<pila.v.ExisteCal(v[i])<<endl;
+		//~ cout<<pila.v.ExisteCal(v[i])<<endl; Depuracion
 		if (!pila.v.ExisteCal(v[i]))
 		{
-			cout<< i <<"    " <<Longitud() <<endl;
+			//~ cout<< i <<"    " <<Longitud() <<endl; Depuracion
 			aux2=v[i];
 			aux.Apilar(aux2);
 		}
@@ -108,7 +109,11 @@ TPilaCalendario::operator-(const TPilaCalendario& pila)
 TCalendario
 TPilaCalendario::Cima()
 {
-	return v[posicion];
+	if( !EsVacia() )
+	{
+		return v[posicion];
+	}
+	else return TCalendario();
 }
 
 
