@@ -6,46 +6,106 @@ TNodoCalendario::TNodoCalendario():TCalendario()
 	siguiente=NULL;
 }
 	
-TNodoCalendario::TNodoCalendario(TNodoCalendario &)
-{}
+TNodoCalendario::TNodoCalendario(TNodoCalendario& nodo)
+{
+	if (siguiente!=NULL)
+	{
+		delete siguiente;
+	}
+	
+	c=nodo.c;
+	siguiente=nodo.siguiente;
+}
 	
 TNodoCalendario::~TNodoCalendario()
-{}
+{
+		siguiente=NULL;
+}
 
-TNodoCalendario::TNodoCalendario& operator=(TNodoCalendario &)
-{}
+TNodoCalendario& 
+TNodoCalendario::operator=(TNodoCalendario& nodo)
+{
+	if (siguiente!=NULL)
+	{
+		delete siguiente;
+	}
+	
+		if (this!=NULL)
+		{
+			c=nodo.c;
+			siguiente=nodo.siguiente;
+		}
+		
+}
 
 /**********Fin TNodoCalendario**********************/
 /**********Inicio TListaPos**********************/
 
 TListaPos::TListaPos()
-{}
+{
+		pos=NULL;
+}
 
-TListaPos::TListaPos(TListaPos&)
-{}
+TListaPos::TListaPos(TListaPos& iter)
+{
+	if (pos!=NULL)
+	{
+		delete pos;
+	}
+	else
+	{
+		pos=iter.pos;
+	}
+}
 
 TListaPos::~TListaPos()
-{}
+{
+		pos=NULL;
+}
 	
 TListaPos&
-TListaPos::operator=(TListaPos &)
-{}
+TListaPos::operator=(TListaPos& iter)
+{
+		if (pos!=NULL)
+		{
+			delete pos;
+		}
+		
+		if (this!=NULL)
+		{
+			pos=iter.pos;
+		}
+		
+		return *this;
+}
 	
 bool
-TListaPos::operator==(TListaPos &)
-{}
+TListaPos::operator==(TListaPos& iter)
+{
+		return pos==iter.pos;
+}
 			
 bool
-TListaPos::operator!=(TListaPos&)
-{}
+TListaPos::operator!=(TListaPos& iter)
+{
+		return !(pos==iter.pos);
+}
 			
 TListaPos
 TListaPos::Siguiente()
-{}
+{
+	if (pos!=NULL)
+	{
+		
+	}
+	
+}
 
 bool
 TListaPos::EsVacia()
-{}
+{
+	return pos==NULL;
+}
 
 /**********Fin TListaPos***************************/
 /**********Inicio TListaCalendario**********************/
