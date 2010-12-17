@@ -110,11 +110,12 @@ TListaPos::EsVacia()
 /**********Fin TListaPos***************************/
 /**********Inicio TListaCalendario**********************/
 
-TListaCalendario::TListaCalendario()
+TListaCalendario::TListaCalendario():TNodoCalendario()
 {}
 
-TListaCalendario::TListaCalendario(TListaCalendario &)
-{}
+TListaCalendario::TListaCalendario(TListaCalendario& lista)
+{
+}
 
 TListaCalendario::~TListaCalendario()
 {}
