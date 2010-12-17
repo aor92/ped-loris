@@ -94,11 +94,14 @@ TListaPos::operator!=(TListaPos& iter)
 TListaPos
 TListaPos::Siguiente()
 {
+	TListaPos aux;
+	
 	if (pos!=NULL)
 	{
-		
+		aux = pos->siguiente;
 	}
 	
+	return aux;
 }
 
 bool
@@ -110,11 +113,20 @@ TListaPos::EsVacia()
 /**********Fin TListaPos***************************/
 /**********Inicio TListaCalendario**********************/
 
-TListaCalendario::TListaCalendario():TNodoCalendario()
-{}
+TListaCalendario::TListaCalendario()
+{
+	primero = NULL;
+}
 
 TListaCalendario::TListaCalendario(TListaCalendario& lista)
 {
+	TListaPos rec = primero;
+	TNodoCalendario nodoaux;
+	
+	while( rec != NULL )
+	{
+		
+	}
 }
 
 TListaCalendario::~TListaCalendario()
