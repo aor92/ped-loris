@@ -18,8 +18,8 @@ class TListaCalendario
 		TListaCalendario();
 		TListaCalendario(TListaCalendario &);
 		~TListaCalendario();
-		TListaCalendario& operator=(TListaCalendario &);
-		bool operator==(TListaCalendario &);
+		TListaCalendario& operator=( const TListaCalendario &);
+		bool operator==( const TListaCalendario &) const;
 		TListaCalendario operator+ (TListaCalendario &);
 		TListaCalendario operator- (TListaCalendario &);
 		Bool Insertar(TCalendario &);

@@ -120,25 +120,119 @@ TListaCalendario::TListaCalendario()
 
 TListaCalendario::TListaCalendario(TListaCalendario& lista)
 {
-	TListaPos rec = primero;
-	TNodoCalendario nodoaux;
 	
-	while( rec != NULL )
+	if( this != &p)
 	{
-		
+
+		primero = new TNodoCalendario(*p.primero);
+		TListaPos ant;
+		ant.pos = p.primero;
+		TListaPos sig;
+		sig.pos = p.primero;
+		sig.pos = sig.pos->siguiente;
+
+		//if( p.primero->siguiente != NULL )
+		if( sig.pos != NULL )
+		{
+			//TListaNodo *ant = p.primero;
+			//TListaNodo *sig = p.primero->siguiente;
+			while(  sig.pos != NULL )
+			{
+				ant.pos->siguiente = new TNodoCalendario(*sig.pos);
+				ant.pos = sig.pos;
+				sig.pos = sig.pos->siguiente;
+				if( sig.pos == NULL ) ultimo = ant.pos;
+			}
+			ant.pos = NULL;
+			sig.pos = NULL;
+		}
 	}
 }
 
 TListaCalendario::~TListaCalendario()
-{}
+{
+if ( primero != NULL)
+	{
+		TNodoCalendario *ant = primero;
+		if ( primero->siguiente != NULL )
+		{
+			TNodoCalendario *sig = primero->siguiente;
+			while( sig != NULL )
+			{
+				delete ant;
+				ant = sig;
+				sig = sig->siguiente;
+			}
+			sig = NULL;
+		}
+		else
+		{
+			delete ant;
+		}
+		ant = NULL;
+		primero = NULL;
+		ultimo = NULL;
+	}	
+}
 
 TListaCalendario& 
-TListaCalendario::operator=(TListaCalendario &)
-{}
+TListaCalendario::operator=(const TListaCalendario &lista)
+{
+		
+	if( this != &lista)
+	{
+		TListaPos ant;
+		TListaPos sig;
+		TListaPos antp;
+		TListaPos sigp;
+
+		this->~TListaPoro();//Comprobar
+
+		ant.pos = lista.primero;
+
+		while( ant.pos != NULL )
+		{
+				this->Insertar(ant.pos->c);
+				ant.pos = ant.pos->siguiente;
+		}
+	}
+}
 	
 bool
-TListaCalendario::operator==(TListaCalendario &)
-{}
+TListaCalendario::operator==(const TListaCalendario &lista) const
+{
+	TNodoCalendario *aux1 = primero;
+	TNodoCalendario *aux2 = lista.primero;
+	int longitud = 0, longitudaux = 0;
+	bool igual = true;
+	
+	longitud = Longitud();
+	longitudaux = lista.Longitud();
+
+	if( longitud != longitudaux )
+	{
+		igual = false;
+	}
+	else
+	{
+		while( aux1 != NULL && aux2 != NULL && igual )
+		{
+			if( aux1->c != aux2->c)
+			{
+				igual = false;
+			}
+			else
+			{
+				aux1 = aux1->siguiente;
+				aux2 = aux2->siguiente;
+				
+			}
+		}
+	}
+
+
+	return igual;
+}
 
 TListaCalendario
 TListaCalendario::operator+ (TListaCalendario &)
@@ -178,15 +272,50 @@ TListaCalendario::Buscar(TCalendario &)
 		
 Int
 TListaCalendario Longitud()
-{}
+{
+	int lon = 0;
+	TListaPos aux;
+	aux.pos = primero;
+
+	while( aux.pos != NULL )
+	{
+		lon++;
+		aux.pos = aux.pos->siguiente;
+	}
+
+	return lon;	
+}
 		
 TListaPos
 TListaCalendario::Primera()
-{}
+{
+	TListaPos aux;
+	
+	if( !this->EsVacia() )
+	{
+		aux.pos = primero;
+	}
+
+	return aux;
+}
 
 TListaPos
 TListaCalendario::Ultima()
-{}
+{
+	TListaPos aux, ant;
+	aux.pos = primero;
+	
+	if( !this->EsVacia() )
+	{
+		ant = pos;
+		while( aux.pos != NULL )
+		{
+			aux.pos = aux.pos->siguiente;
+		}
+	}
+
+	return ant;
+}
 	
 TListaCalendario
 TListaCalendario::SumarSubl (int, int, TListaCalendario&, int, int)
