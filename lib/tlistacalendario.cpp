@@ -1,7 +1,7 @@
 #include "tlistacalendario.h"
 
 /**********Inicio TNodoCalendario**********************/
-TNodoCalendario::TNodoCalendario():TCalendario()
+TNodoCalendario::TNodoCalendario()
 {
 	siguiente=NULL;
 }
@@ -98,7 +98,7 @@ TListaPos::Siguiente()
 	
 	if (pos!=NULL)
 	{
-		aux = pos->siguiente;
+		aux = pos.Siguiente();
 	}
 	
 	return aux;
@@ -124,12 +124,12 @@ TListaCalendario::TListaCalendario( const TListaCalendario& lista)
 	if( this != &lista)
 	{
 
-		primero = new TNodoCalendario(*p.primero);
+		primero = new TNodoCalendario(*lista.primero);
 		TListaPos ant;
-		ant.pos = lista.primero;
+		ant = lista.Primera();
 		TListaPos sig;
-		sig.pos = lista.primero;
-		sig.pos = sig.pos->siguiente;
+		sig = lista.Primera();
+		sig = sig.Siguiente();
 
 		//if( p.primero->siguiente != NULL )
 		if( sig.pos != NULL )
@@ -138,9 +138,9 @@ TListaCalendario::TListaCalendario( const TListaCalendario& lista)
 			//TListaNodo *sig = p.primero->siguiente;
 			while(  sig.pos != NULL )
 			{
-				ant.pos->siguiente = new TNodoCalendario(*sig.pos);
-				ant.pos = sig.pos;
-				sig.pos = sig.pos->siguiente;
+				ant.Siguiente(); = new TNodoCalendario(*sig.pos);
+				ant = sig;
+				sig = sig.Siguiente();
 				if( sig.pos == NULL ) ultimo = ant.pos;
 			}
 			ant.pos = NULL;
