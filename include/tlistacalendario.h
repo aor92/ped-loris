@@ -5,6 +5,9 @@
 #include "tcalendario.h"
 using namespace std;
 
+class TNodoCalendario;
+class TListaPos;
+
 class TListaCalendario
 {
 		friend class TNodoCalendario;
@@ -16,20 +19,20 @@ class TListaCalendario
 	public:
 		
 		TListaCalendario();
-		TListaCalendario(TListaCalendario &);
+		TListaCalendario( const TListaCalendario &);
 		~TListaCalendario();
 		TListaCalendario& operator=( const TListaCalendario &);
 		bool operator==( const TListaCalendario &) const;
 		TListaCalendario operator+ (TListaCalendario &);
 		TListaCalendario operator- (TListaCalendario &);
-		Bool Insertar(TCalendario &);
-		bool Borrar(TCalendario &);
-		bool Borrar (TListaPos &);
-		bool Borrar(int,int,int);
+		bool Insertar( const TCalendario &);
+		bool Borrar( const TCalendario &);
+		bool Borrar ( const TListaPos &);
+		bool Borrar( const int, const int, const int);
 		bool EsVacia();
 		TCalendario Obtener(TListaPos &);
-		bool Buscar(TCalendario &);
-		Int Longitud();
+		bool Buscar( const TCalendario &);
+		int Longitud();
 		TListaPos Primera();
 		TListaPos Ultima();
 		TListaCalendario SumarSubl (int, int, TListaCalendario&, int, int);
