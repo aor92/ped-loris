@@ -11,7 +11,7 @@ class TListaPos;
 class TListaCalendario
 {
 		friend class TNodoCalendario;
-		friend ostream& operator<<(ostream &, TListaCalendario &);
+		friend ostream& operator<<(ostream &, const TListaCalendario &);
 
 	private:
 		TNodoCalendario *primero;

@@ -66,10 +66,10 @@ TListaPos::~TListaPos()
 TListaPos&
 TListaPos::operator=(const TListaPos& iter)
 {
-		if (pos!=NULL)
-		{
-			delete pos;
-		}
+		//~ if (pos!=NULL)
+		//~ {
+			//~ delete pos;
+		//~ }
 		
 		if (this!=NULL)
 		{
@@ -262,7 +262,6 @@ TListaCalendario::Insertar(const TCalendario &c)
 	{
 		post=Primera();
 		
-		
 		while( !insertado && !post.EsVacia())
 		{
 			if( c < Obtener(post))
@@ -277,27 +276,34 @@ TListaCalendario::Insertar(const TCalendario &c)
 			
 		}
 		
-		if( insertado && ant == Ultima() )
+		if( insertado || ant == Ultima() )// && ant == ultima() quitado
 		{
 			if( ant.EsVacia()) //Insertamos primero
 			{
 				TNodoCalendario *nodoaux = new TNodoCalendario();
 				nodoaux->c = c;
-				primero->siguiente = nodoaux;
+				//~ primero->siguiente = nodoaux;
+				nodoaux->siguiente = post.pos;
+				primero = nodoaux;
+				
 			}
 			else if( ant == Ultima()) // Por enmedio final, felicidad
 			{
 				TNodoCalendario *nodoaux = new TNodoCalendario();
 				nodoaux->c = c;
 				nodoaux->siguiente = NULL;
-				ant.pos=nodoaux;
+				//~ ant.pos=nodoaux;
+				ant.pos->siguiente = nodoaux;
 				insertado = true;
 			}
 			else
 			{
 				TNodoCalendario *nodoaux = new TNodoCalendario;
 				nodoaux->c = c;
-				ant.pos= nodoaux;
+				nodoaux->siguiente = post.pos;
+				//~ ant.pos= nodoaux;
+				ant.pos->siguiente = nodoaux;
+				
 			}
 		}
 		
@@ -318,21 +324,27 @@ TListaCalendario::Borrar( const TCalendario &c)
 	{
 		if( Buscar(c) )
 		{
+			
+			//~ cout << "Entra en borrar" << endl;
 			if( c == Obtener(Primera())) // Primera posicion
 			{
+				//~ cout << "Entra en borrar primera posicion" << endl;
 				primero = primero->siguiente;
 				delete post.pos;
+				borrado = true;
 			}
 			else
 			{
+				//~ cout << "Entra en borrado por enmedio" << endl;
 				ant = post;
 				post = post.Siguiente();
 				
-				while( !borrado && !post.EsVacia()) // Enmedio
+				while( !borrado && !post.EsVacia() ) // Enmedio
 				{
+					//~ cout << "Se mete en bucle while" << endl;
 					if( c == Obtener(post))
 					{
-						ant= post.Siguiente();
+						ant.pos->siguiente = post.pos->siguiente;
 						delete post.pos;
 						borrado = true;
 					}
@@ -345,7 +357,6 @@ TListaCalendario::Borrar( const TCalendario &c)
 			}
 		}
 	}
-	
 	
 	return borrado;
 }
@@ -512,9 +523,10 @@ TListaCalendario::Ultima() const
 	
 	if( !this->EsVacia() )
 	{
-		ant = aux;
+		
 		while( aux.pos != NULL )
 		{
+			ant = aux;
 			aux.pos = aux.pos->siguiente;
 		}
 	}
@@ -622,4 +634,22 @@ TListaCalendario::ExtraerRango (const int ini1,const int fi1)
 		}
 	}
 	return aux;
+}
+
+ostream & operator<<( ostream &os, const TListaCalendario &lista )
+{
+		TListaPos aux;
+		aux = lista.Primera();
+		
+		os << "<";
+		while( !aux.EsVacia() )
+		{
+			os << lista.Obtener(aux);
+			aux = aux.Siguiente();
+			if( !aux.EsVacia() ) os << " ";
+		}
+		os << ">";
+	
+	
+	return os;
 }
