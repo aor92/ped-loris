@@ -19,45 +19,48 @@ class TListaCalendario
 	public:
 		
 		TListaCalendario();
-		TListaCalendario( const TListaCalendario &);
+		TListaCalendario(const TListaCalendario &);
 		~TListaCalendario();
 		TListaCalendario& operator=( const TListaCalendario &);
 		bool operator==( const TListaCalendario &) const;
-		TListaCalendario operator+ (TListaCalendario &);
-		TListaCalendario operator- (TListaCalendario &);
+		TListaCalendario operator+ (const TListaCalendario &);
+		TListaCalendario operator- (const TListaCalendario &);
 		bool Insertar( const TCalendario &);
 		bool Borrar( const TCalendario &);
 		bool Borrar ( const TListaPos &);
 		bool Borrar( const int, const int, const int);
-		bool EsVacia();
-		TCalendario Obtener(TListaPos &);
-		bool Buscar( const TCalendario &);
-		int Longitud();
-		TListaPos Primera();
-		TListaPos Ultima();
-		TListaCalendario SumarSubl (int, int, TListaCalendario&, int, int);
+		bool EsVacia() const;
+		TCalendario Obtener(const TListaPos &) const;
+		bool Buscar( const TCalendario &)const;
+		int Longitud() const;
+		TListaPos Primera() const;
+		TListaPos Ultima() const;
+		TListaCalendario SumarSubl (const int, const int,const TListaCalendario&,const  int,const  int);
 		TListaCalendario ExtraerRango (int , int );
 };
 
 
 class TListaPos
 {
+		friend class TListaCalendario;
 		private:
 			TNodoCalendario *pos;
 			
 		public:
 			TListaPos();
-			TListaPos(TListaPos &);
+			TListaPos(const TListaPos &);
 			~TListaPos();
-			TListaPos& operator=(TListaPos &);
-			bool operator==(TListaPos &);
-			bool operator!=(TListaPos &);
-			TListaPos Siguiente();
-			bool EsVacia();
+			TListaPos& operator=(const TListaPos &);
+			bool operator==(const TListaPos &) const;
+			bool operator!=(TListaPos &)const;
+			TListaPos Siguiente() const;
+			bool EsVacia() const;
 };
 
 class TNodoCalendario
 {
+	friend class TListaCalendario;
+	friend class TListaPos;
 	private:
 	
 		TCalendario c;
@@ -66,9 +69,9 @@ class TNodoCalendario
 	public:
 	
 		TNodoCalendario();
-		TNodoCalendario(TNodoCalendario &);
+		TNodoCalendario(const TNodoCalendario &);
 		~TNodoCalendario();
-		TNodoCalendario& operator=(TNodoCalendario &);
+		TNodoCalendario& operator=(const TNodoCalendario &);
 };
 
 #endif

@@ -54,7 +54,7 @@ class TPilaCalendario
 		 * \param cal TCalendario que vamos a apilar.
 		 * \return Devuelve un bool.
 		 */
-		bool Apilar(TCalendario&);
+		bool Apilar(const TCalendario&);
 		
 		/** \brief Método Desapilar.
 		 *

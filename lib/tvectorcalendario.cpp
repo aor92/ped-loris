@@ -56,7 +56,11 @@ TVectorCalendario::TVectorCalendario( const TVectorCalendario & v )
 
 TVectorCalendario::~TVectorCalendario()
 {
-	delete [] c;
+	if (c!=NULL)
+	{
+		delete [] c;
+	}
+	
 	c = NULL;
 	tamano = 0;
 }

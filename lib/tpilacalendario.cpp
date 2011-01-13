@@ -22,6 +22,7 @@ TPilaCalendario::TPilaCalendario(const TPilaCalendario& pila)
 	
 }
 
+//para futuras cosas, usar las igualdad entre vectores y demas implementaciones.
 TPilaCalendario&
 TPilaCalendario::operator =(const TPilaCalendario& pila)
 {
@@ -47,7 +48,7 @@ TPilaCalendario::operator =(const TPilaCalendario& pila)
 TPilaCalendario::~TPilaCalendario()
 {
 		posicion=0;
-		v.~TVectorCalendario();;
+		//~ v.~TVectorCalendario();;
 }
 
 bool
@@ -118,7 +119,7 @@ TPilaCalendario::Cima()
 
 
 bool
-TPilaCalendario::Apilar(TCalendario& cal)
+TPilaCalendario::Apilar(const TCalendario& cal)
 {
 	if(NoVacios()<Longitud())
 	{
