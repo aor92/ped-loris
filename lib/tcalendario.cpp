@@ -184,10 +184,7 @@ TCalendario::~TCalendario(){
 	mens=NULL;
 }
 
-/** \brief Operador de suma sobrecargado
-*  Al llamar al operador de suma de la manera TCalendario+int devuelve un TCalendario con los dias sumados
-*  \param ex numero de dias que se quieren sumar a la fecha
-*/
+
 TCalendario TCalendario::operator+(const int ex){
 	TCalendario tmp((*this));
 	int i;
@@ -201,10 +198,7 @@ TCalendario TCalendario::operator+(const int ex){
 	return (tmp);
 }
 
-/** \brief Operador de resta sobrecargado
-*  Al llamar al operador de resta de la manera TCalendario-int devuelve un TCalendario con los dias restados
-*  \param ex numero de dias que se quieren restar a la fecha
-*/
+
 TCalendario TCalendario::operator-(const int ex){
 	TCalendario tmp((*this));
 	int i;
@@ -229,48 +223,34 @@ TCalendario TCalendario::operator-(const int ex){
 	return (tmp);
 }
 
-/** \brief Operador TCalendario++ sobrecargado
-*  Aumenta la fecha del calendario en 1 dia y devuelve la fecha original
-*  \param ex parametro que se usa para diferencia los dos operadores de incremento
-*/
+
 TCalendario TCalendario::operator++(const int n){
 	TCalendario tmp(*this);
 	*this=*this+1;
 	return tmp;
 }
 
-/** \brief Operador ++TCalendario sobrecargado
-*  Aumenta la fecha del calendario en 1 dia y la devuelve
-*/
+
 TCalendario& TCalendario::operator++(){
 	*this=*this+1;
 	return (*this);
 }
 
 
-/** \brief Operador TCalendario-- sobrecargado
-*  Reduce la fecha del calendario en 1 dia y devuelve la fecha original
-*  \param ex parametro que se usa para diferencia los dos operadores de decremento
-*/
 TCalendario TCalendario::operator--(const int n){
 	TCalendario tmp(*this);
 	*this=((*this)-1);
 	return tmp;
 }
 
-/** \brief Operador --TCalendario sobrecargado
-*  Reduce la fecha del calendario en 1 dia y la devuelve
-*/
+
 TCalendario& TCalendario::operator--(){
 	*this=*this-1;
 	return (*this);
 }
 
 
-/** \brief Operador de asignacion de la calse Calendario
-*  Asigna los valores de un calendario a otro
-*  \param as calendario del que se toman los valores
-*/
+
 TCalendario& TCalendario::operator=(const TCalendario &as){
 	if(this!=&as){
 		this->~TCalendario();
@@ -283,10 +263,6 @@ TCalendario& TCalendario::operator=(const TCalendario &as){
 }
 
 
-/** \brief Modificar el mensaje del Calendario
-*  Modifica el mensaje del calendario
-*  \param m nuevo mensaje que se le asigna al calendario
-*/
 void TCalendario::ModMensaje(const char *m){
 	if(mens!=NULL){
 		delete[] mens;
@@ -300,10 +276,7 @@ void TCalendario::ModMensaje(const char *m){
 }
 
 
-/** \brief Operador menor (comparacion) de calendario
-*  Devuelve true si la primera fecha es menor que la segunda
-*  \param en calendario de la derecha de la comparación
-*/
+
 bool TCalendario::operator<(const TCalendario &en)const{
 	int tmpI=this->anyo*10000+this->mes*100+this->dia;
 	int tmpE=en.Anyo()*10000+en.Mes()*100+en.Dia();
@@ -322,10 +295,7 @@ bool TCalendario::operator<(const TCalendario &en)const{
 	}
 }
 
-/** \brief Operador mayor (comparacion) de calendario
-*  Devuelve true si la primera fecha es mayor que la segunda
-*  \param en calendario de la derecha de la comparación
-*/
+
 bool TCalendario::operator>(const TCalendario &en)const{
 	int tmpI=anyo*10000+mes*100+dia;
 	int tmpE=en.Anyo()*10000+en.Mes()*100+en.Dia();
@@ -345,10 +315,6 @@ bool TCalendario::operator>(const TCalendario &en)const{
 }
 
 
-/** \brief Operador comparacion(igualdad) de calendarios
-*  Devuelve true si la primera fecha es igual que la segunda
-*  \param en calendario de la derecha de la comparación
-*/
 bool TCalendario::operator==(const TCalendario &en)const{
 	bool iguales=false;
 	if(anyo==en.Anyo() && mes==en.Mes() && dia==en.Dia()){
@@ -360,21 +326,11 @@ bool TCalendario::operator==(const TCalendario &en)const{
 	return iguales;
 }
 
-/** \brief Operador comparacion(distinto) de calendarios
-*  Devuelve true si la primera fecha es distinta que la segunda
-*  \param en calendario de la derecha de la comparación
-*/
+
 bool TCalendario::operator!=(const TCalendario &en)const{
 	return(!((*this)==en));
 }
 
-
-/** \brief Modificar la fecha de Calendario
-*  Modifica la fecha de calendario
-*  \param dia dia que se va a insertar
-*  \param mes mes que se va a insertar
-*  \param anyo anyo que se va a insertar
-*/
 bool TCalendario::ModFecha(const int dia,const int mes,const int anyo){
 	bool correcto=FechaCorrecta(dia,mes,anyo);
 	if(correcto){
@@ -385,12 +341,6 @@ bool TCalendario::ModFecha(const int dia,const int mes,const int anyo){
 	return correcto;
 }
 
-
-/** \brief Operador de salida de la clase calendario
-*  Muestra el calendario de una forma especifica
-*  \param os flujo de salida
-*  \param cal calendario a mostrar
-*/
 ostream & operator<<(ostream &os,const TCalendario &cal){
 	if(cal.dia<10) os<<"0"<<cal.dia;
 	else os<<cal.dia;

@@ -16,6 +16,17 @@
  */
 class TPilaCalendario
 {
+	
+	
+	/** \brief Sobrecarga del operador "<<", función amiga.
+	 *
+	 * Función amiga que se encarga de mostrar por pantalla, en un formato determinado un TPilaCalendario que le pasemos.
+	 *
+	 * \param os Ostream donde guardaremos la informacion que queremos mostrar.
+	 * \param pila TPilaCalendario que queremos mostrar.
+	 *
+	 * \return La funcion devuelve un ostream&.
+	 */
 	friend ostream& operator<<(ostream &, const TPilaCalendario &);
 	
 	public:
