@@ -232,28 +232,104 @@ class TListaPos
 			 * \param iter TListaPos a copiar.
 			 */
 			TListaPos(const TListaPos &);
+			
+			/** \brief Destructor de la clase.
+			 *
+			 * Destructor de la clase, borra la memoria.
+			 */
 			~TListaPos();
+			
+			/** \brief Sobrecarga del operador asignacion.
+			 *
+			 *
+			 * Asignamos el contenido del parámetro al objeto que llama al método.
+			 * \param iter TListaPos del cual asignamos.
+			 * \return Devuelve un TListaPos&.
+			 */
 			TListaPos& operator=(const TListaPos &);
+			
+			/** \brief Sobrecarga del operador igualdad.
+			 *
+			 * Devuelve true si las dos TListaPos son iguales.
+			 * \param iter TListaPos del cual comprobamos que es igual.
+			 * \return Devuelve un bool.
+			 */
 			bool operator==(const TListaPos &) const;
+			
+			/** \brief Sobrecarga del operador desigualdad.
+			 *
+			 * Devuelve true si las dos TListaPos NO son iguales.
+			 * \param iter TListaPos del cual comprobamos que es distinta.
+			 * \return Devuelve un bool.
+			 */
 			bool operator!=(TListaPos &)const;
+			
+			/** \brief Método Siguiente.
+			 *
+			 * Nos devuelve un TListaPos con la posicion siguiente al TListaPos que llamama al método.
+			 * \return Devuelve un TListaPos.
+			 */
 			TListaPos Siguiente() const;
+			
+			/** \brief Método EsVacia.
+			 *
+			 * Nos devuelve un bool indicando si la posición está vacia.
+			 * \return Devuelve un bool.
+			 */
 			bool EsVacia() const;
 };
 
+
+/** \brief Clase TNodoCalendario.
+ *
+ * Estructura de la clase.
+ *
+ */
 class TNodoCalendario
 {
 	friend class TListaCalendario;
 	friend class TListaPos;
 	private:
 	
+		/** \brief TCalendario c.
+		 *
+		 * Es el TCalendario que contendrán los objetos de la clase.
+		 */
 		TCalendario c;
+		
+		/** \brief TNodoCalendario *siguiente.
+		 *
+		 * Conforma la estructura de la TListaCalendario, apuntando al siguiente TNodoCalendario.
+		 */
 		TNodoCalendario *siguiente;
 
 	public:
 	
+		/** \brief Constructor por defecto.
+		 *
+		 * Constructor por defecto que inicializa un TNodoCalendario.
+		 */
 		TNodoCalendario();
+		
+		/** \brief Constructor de copia.
+		 *
+		 * Constructor de copia de TNodoCalendario.
+		 * \param nodo TNodoCalendario a copiar.
+		 */
 		TNodoCalendario(const TNodoCalendario &);
+		
+		/** \brief Destructor de la clase.
+		 *
+		 * Destructor de la clase, borra la memoria.
+		 */
 		~TNodoCalendario();
+		
+		/** \brief Sobrecarga del operador asignacion.
+		 *
+		 * Asignamos el contenido del parámetro al objeto que llama al método.
+		 * \param nodo TNodoCalendario del cual asignamos.
+		 * \return Devuelve un TNodoCalendario&.
+		 */
 		TNodoCalendario& operator=(const TNodoCalendario &);
 };
 
