@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include "tcalendario.h"
+#include "tvectorcalendario.h"
 using namespace std;
 
 
@@ -200,6 +201,8 @@ class TListaCalendario
 		 * \return Devuelve un TListaCalendario
 		 */
 		TListaCalendario ExtraerRango (int , int );
+		
+		//int* Funcion1(const TVectorCalendario&);
 };
 
 /** \brief Clase TListaPos.
@@ -277,6 +280,8 @@ class TListaPos
 			 * \return Devuelve un bool.
 			 */
 			bool EsVacia() const;
+			
+			int* Funcion1(const TVectorCalendario&);
 };
 
 

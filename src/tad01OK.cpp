@@ -1,14 +1,18 @@
+//PRUEBA DE LISTA Y VECTOR VACIOS
 #include <iostream>
+#include "tvectorcalendario.h"
+#include "tlistacalendario.h"
 
 using namespace std;
 
-#include "tpilacalendario.h"
-
-int
-main(void)
+int main()
 {
-  TPilaCalendario a, b, c;
+TListaCalendario lista;
+TVectorCalendario vc;
+int *vent;
 
-  cout << "No hace nada" << endl;
-  return 0;
+vent = lista.Funcion1 (vc);
+if (vent) cout<<"ERROR: EL VECTOR DE ENTEROS NO ES NULL"<<endl;
+else cout<<"CORRECTO: EL VECTOR DE ENTEROS ES NULL"<<endl;
+return (0);
 }

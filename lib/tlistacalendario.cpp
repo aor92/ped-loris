@@ -636,6 +636,55 @@ TListaCalendario::ExtraerRango (const int ini1,const int fi1)
 	return aux;
 }
 
+/*
+int*
+TListaCalendario::Funcion1(const TVectorCalendario& vc)
+{
+	int* vectorcillo=new int[vc.Tamano()];
+	TListaPos iter;
+	bool insertar=false;
+	int j=0;
+		
+		for (int i = 0; i < vc.Tamano(); i++)
+		{
+			if (!EsVacia() && Buscar(vc[i]))
+			{
+				insertar=true;
+			}
+			
+			if (insertar)
+			{
+				iter=Primera();
+				while (!this->EsVacia() && !(iter==Ultima()))
+				{
+					cout<<"insertando si lista no vacia"<<endl;
+					
+					if(iter.pos->c==vc[i])
+					{
+						cout<<"dentro de if"<<endl;
+							vectorcillo[i]= j;
+							j++;
+							iter=iter.Siguiente();
+					}
+					else
+					{
+						iter=iter.Siguiente();
+					}
+					
+				}
+				
+			}
+			else
+			{
+				vectorcillo[i]=0;
+			}
+			
+		}
+		
+	return vectorcillo;
+}*/
+
+ 
 ostream & operator<<( ostream &os, const TListaCalendario &lista )
 {
 		TListaPos aux;
