@@ -25,6 +25,8 @@ class TABBCalendario
 		void InordenAux(TVectorCalendario&, int&);
 		void PreordenAux(TVectorCalendario&, int&);
 		void PostordenAux(TVectorCalendario&, int&);
+		
+		void Eliminar( TNodoABB &);
 	
 	public:
 		TABBCalendario();

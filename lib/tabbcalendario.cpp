@@ -17,9 +17,27 @@ TNodoABB::TNodoABB( const TNodoABB &nodo )
 
 TNodoABB::~TNodoABB()
 {
-	if( iz != NULL ) delete iz;
+	Eliminar(*this);
+	
+	/*if( iz != NULL ) delete iz;
 	if( de != NULL ) delete de;
-	iz = de = NULL;
+	iz = de = NULL;*/
+}
+
+void 
+TNodoABB::Eliminar( TNodoABB &n)
+{
+	if( n.iz.nodo != NULL )
+	{
+		Eliminar( *n.iz.nodo );
+	}
+	if( n.de.nodo != NULL )
+	{
+		Eliminar( *n.de.nodo);
+	}
+	n.iz.nodo = NULL;
+	n.de.nodo = NULL;
+	item.~TCalendario();
 }
 
 TNodoABB&
@@ -44,5 +62,9 @@ TABBCalendario::TABBCalendario()
 
 TABBCalendario::~TABBCalendario()
 {
-	
+	if( raiz != NULL )
+	{
+		delete raiz;
+		raiz = NULL;
+	}
 }
