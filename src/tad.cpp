@@ -53,7 +53,7 @@ lista.Insertar(c14);
 lista.Insertar(c16);
 
 
-vent = lista.Funcion1 (vc);
+//~ vent = lista.Funcion1 (vc);
 if (!vent) cout<<"ERROR: EL VECTOR DE ENTEROS ES NULL"<<endl;
 else for (int i=0; i<kMaxV; i++) cout<<vent[i]<<endl;
 return (0);

@@ -1,41 +1,40 @@
 #ifndef __TABBCALENDARIO_H
 #define __TABBCALENDARIO_H
 
-class TNodoABB
-{
-	private:
-		// Elemento (etiqueta) del nodo
-		TCalendario item;
-		// Subárbol izquierdo y derecho
-		TABBCalendario iz, de;	
-		bool operator==(const TNodoABB&);
-	
-	public:
-		TNodoABB();
-		TNodoABB(const TNodoABB&);
-		~TNodoABB();
-		TNodoABB& operator=(const TNodoABB&);
-};
+#include <iostream>
+#include "tcalendario.h"
+#include "tvectorcalendario.h"
+#include "tpilacalendario.h"
+#include "tlistacalendario.h"
+
+using namespace std;
+
+class TNodoABB;
 
 class TABBCalendario
 {
-	friend ostream& operator<<(ostream&,const TABBCalentario&);
+	friend class TNodoABB;
+	
+	friend ostream& operator<<(ostream&,const TABBCalendario&);
+	
 	private:
+	
 		TNodoABB* raiz;
 		void InordenAux(TVectorCalendario&, int&);
 		void PreordenAux(TVectorCalendario&, int&);
 		void PostordenAux(TVectorCalendario&, int&);
 		
-		void Eliminar( TNodoABB &);
+		
 	
 	public:
+	
 		TABBCalendario();
 		~TABBCalendario();
 		TABBCalendario(const TABBCalendario&);
 		TABBCalendario& operator=(const TABBCalendario&);
 		bool operator==(const TABBCalendario&);
-		bool EsVacio();
-		bool Insertar(const TCalendario&);
+		bool EsVacio() const;
+		/*bool Insertar(const TCalendario&);
 		bool Borrar(const TCalendario&);
 		bool Buscar(const TCalendario&);
 		TCalendario Raiz() const;
@@ -47,6 +46,29 @@ class TABBCalendario
 		TVectorCalendario Postorden();
 		TABBCalendario operator+(const TABBCalendario&);
 		TABBCalendario operator-(const TABBCalendario&);
-		int* BuscarLista(const TListaCandario&) const;
+		int* BuscarLista(const TListaCandario&) const;*/
 };
+
+class TNodoABB
+{
+	
+	private:
+		// Elemento (etiqueta) del nodo
+		TCalendario item;
+		// Subárbol izquierdo y derecho
+		TABBCalendario iz;
+		TABBCalendario de;
+		//~ bool operator==(const TNodoABB&);
+		
+		void Eliminar( TNodoABB &);
+	
+	public:
+		TNodoABB();
+		TNodoABB(const TNodoABB&);
+		~TNodoABB();
+		TNodoABB& operator=(const TNodoABB&);
+};
+
+
+
 #endif

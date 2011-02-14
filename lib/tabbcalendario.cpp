@@ -1,18 +1,13 @@
-#unclude "tabbcalendario.h"
-#include "tcalendario.h"
-
+#include "tabbcalendario.h"
 
 TNodoABB::TNodoABB()
-{
-	iz = de = NULL;
-}
+{}
 
 TNodoABB::TNodoABB( const TNodoABB &nodo )
 {
 	item = nodo.item;
-	
-	if( nodo.iz != NULL) iz = nodo.iz;
-	if( nodo.de != NULL) de = nodo.de;
+	iz = nodo.iz;
+	de = nodo.de;
 }
 
 TNodoABB::~TNodoABB()
@@ -27,23 +22,23 @@ TNodoABB::~TNodoABB()
 void 
 TNodoABB::Eliminar( TNodoABB &n)
 {
-	if( n.iz.nodo != NULL )
+	if( n.iz.raiz != NULL )
 	{
-		Eliminar( *n.iz.nodo );
+		Eliminar( *n.iz.raiz );
 	}
-	if( n.de.nodo != NULL )
+	if( n.de.raiz != NULL )
 	{
-		Eliminar( *n.de.nodo);
+		Eliminar( *n.de.raiz);
 	}
-	n.iz.nodo = NULL;
-	n.de.nodo = NULL;
+	n.iz.raiz = NULL;
+	n.de.raiz = NULL;
 	item.~TCalendario();
 }
 
 TNodoABB&
 TNodoABB::operator =(const TNodoABB &nodo )
 {
-	if( nodo != &this )
+	if( this != &nodo )
 	{
 		item = nodo.item;
 		de = nodo.de;
@@ -67,4 +62,51 @@ TABBCalendario::~TABBCalendario()
 		delete raiz;
 		raiz = NULL;
 	}
+}
+
+TABBCalendario::TABBCalendario(const TABBCalendario &a )
+{
+	if( a.raiz != NULL )
+	{
+		raiz = new TNodoABB( *a.raiz );
+	}
+	else
+	{
+		raiz = NULL;
+	}
+}
+
+TABBCalendario&
+TABBCalendario::operator =(const TABBCalendario& a )
+{
+	if( this != &a)
+	{
+		this->~TABBCalendario();
+		
+		if( a.raiz != NULL )
+		{
+			raiz = new TNodoABB(*a.raiz);
+		}
+		
+	}
+	
+	return *this;
+}
+
+bool
+TABBCalendario::operator ==( const TABBCalendario& a )
+{	
+	bool igual = false;
+	
+	return igual;	
+}
+
+bool
+TABBCalendario::EsVacio() const
+{
+	bool vacio = true;
+	
+	if( raiz != NULL ) vacio = false;
+	
+	return vacio;
 }
