@@ -20,9 +20,9 @@ class TABBCalendario
 	private:
 	
 		TNodoABB* raiz;
-		void InordenAux(TVectorCalendario&, int&);
-		void PreordenAux(TVectorCalendario&, int&);
-		void PostordenAux(TVectorCalendario&, int&);
+		void InordenAux(TVectorCalendario&, int&) const;
+		void PreordenAux(TVectorCalendario&, int&) const;
+		void PostordenAux(TVectorCalendario&, int&) const;
 		
 		
 	
@@ -34,9 +34,9 @@ class TABBCalendario
 		TABBCalendario& operator=(const TABBCalendario&);
 		bool operator==(const TABBCalendario&);
 		bool EsVacio() const;
-		/*bool Insertar(const TCalendario&);
-		bool Borrar(const TCalendario&);
-		bool Buscar(const TCalendario&);
+		bool Insertar(const TCalendario&);
+		//bool Borrar(const TCalendario&);
+		bool Buscar(const TCalendario&)const;
 		TCalendario Raiz() const;
 		int Altura() const;
 		int Nodos() const;
@@ -44,14 +44,14 @@ class TABBCalendario
 		TVectorCalendario Inorden();
 		TVectorCalendario Preorden();
 		TVectorCalendario Postorden();
-		TABBCalendario operator+(const TABBCalendario&);
+		/*TABBCalendario operator+(const TABBCalendario&);
 		TABBCalendario operator-(const TABBCalendario&);
 		int* BuscarLista(const TListaCandario&) const;*/
 };
 
 class TNodoABB
 {
-	
+	friend class TABBCalendario;
 	private:
 		// Elemento (etiqueta) del nodo
 		TCalendario item;
