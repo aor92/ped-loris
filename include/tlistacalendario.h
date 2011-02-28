@@ -265,7 +265,7 @@ class TListaPos
 			 * \param iter TListaPos del cual comprobamos que es distinta.
 			 * \return Devuelve un bool.
 			 */
-			bool operator!=(TListaPos &)const;
+			bool operator!=(const TListaPos &)const;
 			
 			/** \brief Método Siguiente.
 			 *

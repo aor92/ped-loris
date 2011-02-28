@@ -116,7 +116,7 @@ TABBCalendario::Insertar(const TCalendario& nuevo)
 {
 	TNodoABB* aux=new TNodoABB();
 	
-	if (raiz==NULL) 
+	if (raiz==NULL)
 	{
 		raiz=aux;
 		raiz->item=nuevo;
@@ -228,7 +228,7 @@ TABBCalendario::NodosHoja()const
 }
 
 TVectorCalendario 
-TABBCalendario::Inorden()
+TABBCalendario::Inorden() const
 {
 	int pos=1;
 	TVectorCalendario v(Nodos());
@@ -248,7 +248,7 @@ TABBCalendario::InordenAux(TVectorCalendario& v, int& pos) const
 }
 
 TVectorCalendario
-TABBCalendario::Preorden()
+TABBCalendario::Preorden() const
 {
 	int pos=1;
 	TVectorCalendario v(Nodos());
@@ -268,7 +268,7 @@ TABBCalendario::PreordenAux(TVectorCalendario& v, int& pos)const
 }
 
 TVectorCalendario
-TABBCalendario::Postorden()
+TABBCalendario::Postorden() const
 {
 	int pos=1;
 	TVectorCalendario v(Nodos());
@@ -285,4 +285,74 @@ TABBCalendario::PostordenAux(TVectorCalendario& v, int& pos) const
 		v[pos]=Raiz();
 		pos++;
 	}
+}
+
+TABBCalendario
+TABBCalendario::operator+( const TABBCalendario & ar)
+{
+	TABBCalendario aux(*this);
+	TVectorCalendario v = Inorden();
+	
+	for( int i=1; i < v.Tamano(); i++ )	
+	{
+		Insertar(v[i]);
+	}
+	
+	return aux;
+}
+
+TABBCalendario
+TABBCalendario::operator-( const TABBCalendario & ar )
+{
+	TABBCalendario aux(*this);
+	TVectorCalendario v = Inorden();
+	
+	for( int i = 1; i < v.Tamano(); i++ )
+	{
+		if( ar.Buscar( v[i]) )
+		{
+			aux.Insertar(v[i]);
+		}
+	}
+	
+	return aux;
+}
+
+int *
+TABBCalendario::BuscarLista( const TListaCalendario& lc ) const
+{
+	int* resultado = new int[lc.Longitud()];
+	
+	TVectorCalendario ino = Inorden();
+	
+	int i = 1;
+	TListaPos p;
+	p = lc.Primera();
+	
+	for( ; p != lc.Ultima() ; p = p.Siguiente() )
+	{
+		if( Buscar( lc.Obtener(p) ) )
+		{
+			int j = 0;
+			for( int k = 1; k < ino.Tamano(); k++)
+			{
+				if(ino[i] == lc.Obtener(p) )
+				{
+					if(  i-1 > 0 )
+					{
+						resultado[j] = ino[i-1].Anyo();//Meter el año no el calendario
+						j++;
+					}
+				}
+			}
+		}
+		else
+		{
+			resultado[i] = 0;
+		}
+		
+		i++;
+	}
+	
+	return resultado;
 }

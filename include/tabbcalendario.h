@@ -41,12 +41,12 @@ class TABBCalendario
 		int Altura() const;
 		int Nodos() const;
 		int NodosHoja() const;
-		TVectorCalendario Inorden();
-		TVectorCalendario Preorden();
-		TVectorCalendario Postorden();
-		/*TABBCalendario operator+(const TABBCalendario&);
+		TVectorCalendario Inorden() const;
+		TVectorCalendario Preorden() const;
+		TVectorCalendario Postorden() const;
+		TABBCalendario operator+(const TABBCalendario&);
 		TABBCalendario operator-(const TABBCalendario&);
-		int* BuscarLista(const TListaCandario&) const;*/
+		int* BuscarLista(const TListaCalendario&) const;
 };
 
 class TNodoABB

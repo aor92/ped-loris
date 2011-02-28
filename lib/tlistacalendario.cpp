@@ -86,7 +86,7 @@ TListaPos::operator==(const TListaPos& iter) const
 }
 			
 bool
-TListaPos::operator!=(TListaPos& iter) const
+TListaPos::operator!=( const TListaPos& iter) const
 {
 		return !(pos==iter.pos);
 }
