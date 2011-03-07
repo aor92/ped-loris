@@ -23,6 +23,7 @@ class TABBCalendario
 		void InordenAux(TVectorCalendario&, int&) const;
 		void PreordenAux(TVectorCalendario&, int&) const;
 		void PostordenAux(TVectorCalendario&, int&) const;
+		void IntercambiarBorrar();
 		
 		
 	
@@ -35,7 +36,7 @@ class TABBCalendario
 		bool operator==(const TABBCalendario&);
 		bool EsVacio() const;
 		bool Insertar(const TCalendario&);
-		//bool Borrar(const TCalendario&);
+		bool Borrar(const TCalendario&);
 		bool Buscar(const TCalendario&)const;
 		TCalendario Raiz() const;
 		int Altura() const;
@@ -61,6 +62,7 @@ class TNodoABB
 		//~ bool operator==(const TNodoABB&);
 		
 		void Eliminar( TNodoABB &);
+		
 	
 	public:
 		TNodoABB();

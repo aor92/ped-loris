@@ -133,6 +133,87 @@ TABBCalendario::Insertar(const TCalendario& nuevo)
 	else return false;
 }
 
+bool
+TABBCalendario::Borrar(const TCalendario &c )
+{
+	bool borrado = false;
+	
+	if( raiz = NULL )
+	{
+		borrado = false;
+	}
+	else if ( raiz->item < c )
+	{
+		if( raiz->de.Borrar(c) )
+			borrado = true;
+	}
+	else if ( raiz->item > c )
+	{
+		if( raiz->iz.Borrar(c) )
+			borrado = true;
+	}
+	else
+	{
+		TNodoABB *aux;
+		
+		if( raiz->iz.raiz ==NULL )
+		{
+			aux = raiz;
+			raiz = raiz->de.raiz;
+			aux->de.raiz = NULL;
+			delete aux;
+			aux = NULL;
+			borrado = true;
+		}
+		else if( raiz->de.raiz == NULL)
+		{
+			aux = raiz;
+			raiz = raiz->iz.raiz;
+			aux->iz.raiz = NULL;
+			delete aux;
+			aux = NULL;
+			borrado = true;
+		}
+		else
+		{
+			this->IntercambiarBorrar();
+			borrado = true;
+		}
+	}
+	return borrado;
+}
+
+void
+TABBCalendario::IntercambiarBorrar()
+{
+	TNodoABB *ant, *post, *nodoactual;
+	
+	nodoactual = raiz;
+	ant = raiz;
+	post = raiz->iz.raiz;
+	
+	if(post->de.raiz == NULL)
+	{
+			nodoactual->item = post->item;
+			nodoactual->iz.raiz = post->iz.raiz;
+	}
+	else
+	{
+		while( post->de.raiz != NULL )
+		{
+			ant = post;
+			post = post->de.raiz;
+		}
+		ant->de.raiz = post->iz.raiz;
+		nodoactual->item = post->item;
+	}
+	
+	delete post;
+	ant = NULL;
+	post = NULL;
+	nodoactual = NULL;
+	
+}
 
 bool
 TABBCalendario::Buscar(const TCalendario& find)const
