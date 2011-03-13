@@ -24,7 +24,7 @@ class TABBCalendario
 		void PreordenAux(TVectorCalendario&, int&) const;
 		void PostordenAux(TVectorCalendario&, int&) const;
 		void IntercambiarBorrar();
-		
+		void Copiar(const TABBCalendario &acopiar);
 		
 	
 	public:
@@ -33,7 +33,7 @@ class TABBCalendario
 		~TABBCalendario();
 		TABBCalendario(const TABBCalendario&);
 		TABBCalendario& operator=(const TABBCalendario&);
-		bool operator==(const TABBCalendario&);
+		bool operator==(const TABBCalendario&)const;
 		bool EsVacio() const;
 		bool Insertar(const TCalendario&);
 		bool Borrar(const TCalendario&);

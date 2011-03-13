@@ -1,28 +1,45 @@
 #include <iostream>
-
+#include "tabbcalendario.h"
 using namespace std;
-
-#include "tcalendario.h"
-#include "tpilacalendario.h"
 
 int
 main(void)
 {
-  TCalendario c1(14, 12, 1966, (char*) "Fecha Correcta");
-  TCalendario c2(1, 1, 1954, (char*) "Fecha Correcta");
-  TPilaCalendario p1, p2;
-      
-  p1.Apilar(c1); 
-  p1.Apilar(c2);
-  p2.Apilar(c1); 
-  
-  cout<<"primer operator"<<endl;
-  cout << (p1 - p2) << endl;
+/************************************************/
+/***************** INORDEN, "=="                */
+/************************************************/
 
-  p2.Apilar(c2);
+  TABBCalendario a,b;
+  TVectorCalendario vec, vec2;
 
-  cout<<"segundo operator"<<endl;
-  cout << (p1 - p2) << endl;
+  TCalendario c1(1,1,2011,"Fecha1");
+  TCalendario c2(2,1,2011,"Fecha2");
+  TCalendario c3(3,1,2011,"Fecha3");
+  TCalendario c4(4,1,2011,"Fecha4");
+  TCalendario c5(5,1,2011,"Fecha5");
+  TCalendario c6(6,1,2011,"Fecha6");
 
-  return 0;
+  a.Insertar(c5);
+  a.Insertar(c2);
+  a.Insertar(c1);
+  a.Insertar(c3);
+  a.Insertar(c6);
+
+
+  vec = a.Inorden();
+  b = a;
+ 
+  vec2 = b.Inorden();
+  if ( vec == vec2 ) 
+	{cout << "IGUALES"<< endl;}
+  else 
+	{cout << "NO IGUALES"<< endl;}
+
+  vec2 = b.Preorden();
+  if ( vec == vec2 ) 
+	{cout << "IGUALES"<< endl;}
+  else 
+	{cout << "NO IGUALES"<< endl;}
+
+  return 0; 
 }

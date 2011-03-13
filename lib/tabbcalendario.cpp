@@ -76,29 +76,42 @@ TABBCalendario::TABBCalendario(const TABBCalendario &a )
 	}
 }
 
-TABBCalendario&
-TABBCalendario::operator =(const TABBCalendario& a )
+TABBCalendario& 
+TABBCalendario::operator=(const TABBCalendario &acopiar)
 {
-	if( this != &a)
+	if(this!=&acopiar)
 	{
 		this->~TABBCalendario();
-		
-		if( a.raiz != NULL )
-		{
-			raiz = new TNodoABB(*a.raiz);
-		}
-		
+		Copiar(acopiar);
 	}
 	
-	return *this;
+	return (*this);
 }
 
-bool
-TABBCalendario::operator ==( const TABBCalendario& a )
-{	
-	bool igual = false;
-	
-	return igual;	
+void 
+TABBCalendario::Copiar(const TABBCalendario &acopiar)
+{
+	if (acopiar.raiz!=NULL)
+	{
+		TNodoABB *aux=new TNodoABB();
+		aux->item=acopiar.raiz->item;
+		raiz=aux;
+		(raiz->iz).Copiar(acopiar.raiz->iz);
+		(raiz->de).Copiar(acopiar.raiz->de);
+	}
+	else raiz=NULL;
+}
+
+bool 
+TABBCalendario::operator==(const TABBCalendario& der)const
+{
+	if((raiz!=NULL && der.raiz==NULL) || (raiz==NULL && der.raiz!=NULL))
+	{
+		return false;
+	}
+	else if(raiz==NULL && der.raiz==NULL) return true;
+	else if(raiz->item!=der.raiz->item) return false;
+	else return(raiz->de==der.raiz->de && raiz->iz==der.raiz->iz);
 }
 
 bool
@@ -216,24 +229,12 @@ TABBCalendario::IntercambiarBorrar()
 }
 
 bool
-TABBCalendario::Buscar(const TCalendario& find)const
+TABBCalendario::Buscar(const TCalendario& obj)const
 {
-		if (EsVacio())
-		{
-			return false;
-		}
-		else if (raiz->item==find)
-		{
-			return true;
-		}
-		else if (raiz->item>find)
-		{
-			raiz->de.Buscar(find);
-		}
-		else if (raiz->item<find)
-		{
-			raiz->iz.Buscar(find);
-		}
+	if (raiz==NULL) return false;
+	else if (obj>raiz->item) return (raiz->de).Buscar(obj);
+	else if (obj<raiz->item) return (raiz->iz).Buscar(obj);
+	else return true;
 }
 
 
@@ -270,42 +271,23 @@ TABBCalendario::Altura()const
 int 
 TABBCalendario::Nodos() const
 {
-	int n=0;
-	
-	if (EsVacio())
+	int num=0;
+	if(raiz!=NULL)
 	{
-		return n;
+		num=1;
+		if(!(raiz->iz).EsVacio()) num=num+raiz->iz.Nodos();
+		if(!(raiz->de).EsVacio()) num=num+raiz->de.Nodos();
 	}
-	
-	if(!raiz->de.EsVacio())
-	{
-		n+=1+raiz->de.Nodos();
-	}
-	
-	if (!raiz->iz.EsVacio())
-	{
-		n+=1+raiz->iz.Nodos();
-	}
+	return num;
 }
 
 int
 TABBCalendario::NodosHoja()const
 {
-	int hoja=0;
-	
-	if (EsVacio())
-	{
-		return hoja;
-	}
-	else if (raiz->de.EsVacio() && raiz->iz.EsVacio())
-	{
-		hoja++;
-	}
-	else 
-	{
-		raiz->de.NodosHoja()+raiz->iz.NodosHoja();
-	}
-	
+	if (!EsVacio() && raiz->iz.EsVacio() && raiz->de.EsVacio())
+		return 1;
+	else
+		return raiz->iz.NodosHoja() + raiz->de.NodosHoja();
 }
 
 TVectorCalendario 
@@ -314,6 +296,7 @@ TABBCalendario::Inorden() const
 	int pos=1;
 	TVectorCalendario v(Nodos());
 	InordenAux(v,pos);
+	return v;
 }
 
 void
@@ -334,6 +317,7 @@ TABBCalendario::Preorden() const
 	int pos=1;
 	TVectorCalendario v(Nodos());
 	PreordenAux(v,pos);
+	return v;
 }
 
 void
@@ -354,6 +338,7 @@ TABBCalendario::Postorden() const
 	int pos=1;
 	TVectorCalendario v(Nodos());
 	PostordenAux(v,pos);
+	return v;
 }
 
 void
@@ -400,40 +385,24 @@ TABBCalendario::operator-( const TABBCalendario & ar )
 }
 
 int *
-TABBCalendario::BuscarLista( const TListaCalendario& lc ) const
+TABBCalendario::BuscarLista( const TListaCalendario& lista ) const
 {
-	int* resultado = new int[lc.Longitud()];
-	
-	TVectorCalendario ino = Inorden();
-	
-	int i = 1;
-	TListaPos p;
-	p = lc.Primera();
-	
-	for( ; p != lc.Ultima() ; p = p.Siguiente() )
+	TListaPos actual=lista.Primera(),anterior;
+	int* tmp=new int[lista.Longitud()];
+	int i=0;
+	while(!actual.EsVacia())
 	{
-		if( Buscar( lc.Obtener(p) ) )
+		if(Buscar(lista.Obtener(actual)) && !anterior.EsVacia())
 		{
-			int j = 0;
-			for( int k = 1; k < ino.Tamano(); k++)
-			{
-				if(ino[i] == lc.Obtener(p) )
-				{
-					if(  i-1 > 0 )
-					{
-						resultado[j] = ino[i-1].Anyo();//Meter el año no el calendario
-						j++;
-					}
-				}
-			}
+			tmp[i]=(lista.Obtener(actual)).Anyo();
 		}
 		else
 		{
-			resultado[i] = 0;
+			tmp[i]=0;
 		}
-		
+		anterior=actual;
+		actual=actual.Siguiente();
 		i++;
 	}
-	
-	return resultado;
+	return tmp;
 }

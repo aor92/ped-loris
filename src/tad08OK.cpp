@@ -1,28 +1,38 @@
 #include <iostream>
-
+#include "tabbcalendario.h"
 using namespace std;
-
-#include "tcalendario.h"
-#include "tpilacalendario.h"
 
 int
 main(void)
 {
-  TCalendario c1(1, 1, 2001, (char*) "Fecha Correcta");
-  TCalendario c2(1, 1, 2002, (char*) "Fecha Correcta");
-  TCalendario c3(1, 1, 2003, (char*) "Fecha Correcta");
-  TCalendario c4(1, 1, 2004, (char*) "Fecha Correcta");
-  TPilaCalendario p1, p2;
-      
-  p1.Apilar(c1); 
-  p1.Apilar(c2);
-  p2.Apilar(c2);
-  p2.Apilar(c3);
-  p2.Apilar(c4);
+/***************************************************/
+/***************** INSERTAR			   */
+/***************************************************/
+  TABBCalendario a;
 
-	cout<<p1<<"   "<<p1.Longitud()<<endl;
-	cout<<p2<<"   "<<p2.Longitud()<<endl;
-  cout << (p1 - p2) << endl;
+  TCalendario c1(1,1,2011,"Fecha1");
+  TCalendario c2(2,1,2011,"Fecha2");
+  TCalendario c3(3,1,2011,"Fecha3");
+  TCalendario c4(4,1,2011,"Fecha4");
+  TCalendario c5(5,1,2011,"Fecha5");
+  TCalendario c6(6,1,2011,"Fecha6");
+  TCalendario c7(7,1,2011,"Fecha7");
+
+  a.Insertar(c5);
+  a.Insertar(c2);
+  a.Insertar(c1);
+  a.Insertar(c3);
+  a.Insertar(c6);
+
+  if(a.Insertar(c7))
+        cout << "Insertado" << endl;
+  else
+	cout << "No insertado" << endl;
+
+  if(a.Insertar(c7))
+        cout << "Insertado" << endl;
+  else
+	cout << "No insertado" << endl;
 
   return 0;
 }
