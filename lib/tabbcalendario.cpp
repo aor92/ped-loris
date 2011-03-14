@@ -127,10 +127,9 @@ TABBCalendario::EsVacio() const
 bool 
 TABBCalendario::Insertar(const TCalendario& nuevo)
 {
-	TNodoABB* aux=new TNodoABB();
-	
 	if (raiz==NULL)
 	{
+		TNodoABB* aux=new TNodoABB();
 		raiz=aux;
 		raiz->item=nuevo;
 		return true;
@@ -147,53 +146,34 @@ TABBCalendario::Insertar(const TCalendario& nuevo)
 }
 
 bool
-TABBCalendario::Borrar(const TCalendario &c )
+TABBCalendario::Borrar(const TCalendario &obj )
 {
-	bool borrado = false;
-	
-	if( raiz = NULL )
-	{
-		borrado = false;
-	}
-	else if ( raiz->item < c )
-	{
-		if( raiz->de.Borrar(c) )
-			borrado = true;
-	}
-	else if ( raiz->item > c )
-	{
-		if( raiz->iz.Borrar(c) )
-			borrado = true;
-	}
-	else
-	{
-		TNodoABB *aux;
-		
-		if( raiz->iz.raiz ==NULL )
+	if(raiz!=NULL)
+	{  
+		if (raiz->item<obj) return(raiz->de).Borrar(obj);
+		else if (raiz->item>obj) return(raiz->iz).Borrar(obj);
+		else if (raiz->item==obj) 
 		{
-			aux = raiz;
-			raiz = raiz->de.raiz;
-			aux->de.raiz = NULL;
-			delete aux;
-			aux = NULL;
-			borrado = true;
+			TABBCalendario aux(*this);
+			if (raiz->iz.raiz==NULL) raiz=raiz->de.raiz;
+			else if (raiz->de.raiz==NULL) raiz=raiz->iz.raiz;
+			else
+			{
+				raiz->item=mayor();
+				raiz->de.Borrar(raiz->item);
+			}
+			return true;
 		}
-		else if( raiz->de.raiz == NULL)
-		{
-			aux = raiz;
-			raiz = raiz->iz.raiz;
-			aux->iz.raiz = NULL;
-			delete aux;
-			aux = NULL;
-			borrado = true;
-		}
-		else
-		{
-			this->IntercambiarBorrar();
-			borrado = true;
-		}
+		else return false;
 	}
-	return borrado;
+	else return false;
+}
+
+TCalendario 
+TABBCalendario::mayor()const
+{
+	if(raiz->de.raiz!=NULL) return raiz->de.mayor();
+	else return raiz->item;
 }
 
 void
@@ -354,35 +334,31 @@ TABBCalendario::PostordenAux(TVectorCalendario& v, int& pos) const
 }
 
 TABBCalendario
-TABBCalendario::operator+( const TABBCalendario & ar)
+TABBCalendario::operator+( const TABBCalendario & ar) const
 {
-	TABBCalendario aux(*this);
-	TVectorCalendario v = Inorden();
-	
-	for( int i=1; i < v.Tamano(); i++ )	
+	TABBCalendario tmp(*this);
+	TVectorCalendario  vec(ar.Inorden());
+	for(int i=1;i<=vec.Ocupadas();i++)
 	{
-		Insertar(v[i]);
+		tmp.Insertar(vec[i]);
 	}
 	
-	return aux;
+	return tmp;
 }
 
 TABBCalendario
-TABBCalendario::operator-( const TABBCalendario & ar )
+TABBCalendario::operator-( const TABBCalendario & ar ) const
 {
-	TABBCalendario aux(*this);
-	TVectorCalendario v = Inorden();	
-	
-	for( int i = 1; i < v.Tamano(); i++ )
+	TABBCalendario devo;
+	TVectorCalendario tmp(this->Inorden());
+	for(int i=1;i<=tmp.Tamano();i++)
 	{
-		if( ar.Buscar( v[i]) )
+		if(!ar.Buscar(tmp[i])) 
 		{
-			//~ aux.Insertar(v[i]);
-			//aux.Borrar(v[i]); //Posible fallo de borrar, mirarlo
+			devo.Insertar(tmp[i]);
 		}
 	}
-	
-	return aux;
+	return devo;
 }
 
 int *
@@ -391,6 +367,7 @@ TABBCalendario::BuscarLista( const TListaCalendario& lista ) const
 	TListaPos actual=lista.Primera(),anterior;
 	int* tmp=new int[lista.Longitud()];
 	int i=0;
+	
 	while(!actual.EsVacia())
 	{
 		if(Buscar(lista.Obtener(actual)) && !anterior.EsVacia())

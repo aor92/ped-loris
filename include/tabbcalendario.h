@@ -25,7 +25,7 @@ class TABBCalendario
 		void PostordenAux(TVectorCalendario&, int&) const;
 		void IntercambiarBorrar();
 		void Copiar(const TABBCalendario &acopiar);
-		
+		TCalendario mayor()const;
 	
 	public:
 	
@@ -45,8 +45,8 @@ class TABBCalendario
 		TVectorCalendario Inorden() const;
 		TVectorCalendario Preorden() const;
 		TVectorCalendario Postorden() const;
-		TABBCalendario operator+(const TABBCalendario&);
-		TABBCalendario operator-(const TABBCalendario&);
+		TABBCalendario operator+(const TABBCalendario&)const;
+		TABBCalendario operator-(const TABBCalendario&)const;
 		int* BuscarLista(const TListaCalendario&) const;
 };
 
