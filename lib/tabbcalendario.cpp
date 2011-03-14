@@ -371,13 +371,14 @@ TABBCalendario
 TABBCalendario::operator-( const TABBCalendario & ar )
 {
 	TABBCalendario aux(*this);
-	TVectorCalendario v = Inorden();
+	TVectorCalendario v = Inorden();	
 	
 	for( int i = 1; i < v.Tamano(); i++ )
 	{
 		if( ar.Buscar( v[i]) )
 		{
-			aux.Insertar(v[i]);
+			//~ aux.Insertar(v[i]);
+			//aux.Borrar(v[i]); //Posible fallo de borrar, mirarlo
 		}
 	}
 	
@@ -405,4 +406,13 @@ TABBCalendario::BuscarLista( const TListaCalendario& lista ) const
 		i++;
 	}
 	return tmp;
+}
+
+ostream &
+operator <<( ostream& os, const TABBCalendario& abb )
+{
+	TVectorCalendario v = abb.Inorden();
+	os << v;
+	
+	return os;
 }
