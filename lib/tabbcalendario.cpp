@@ -1,5 +1,4 @@
 #include "tabbcalendario.h"
-
 TNodoABB::TNodoABB()
 {}
 
@@ -209,7 +208,7 @@ TABBCalendario::IntercambiarBorrar()
 }
 
 bool
-TABBCalendario::Buscar(const TCalendario& obj)const
+TABBCalendario::Buscar(const TCalendario &obj)const
 {
 	if (raiz==NULL) return false;
 	else if (obj>raiz->item) return (raiz->de).Buscar(obj);
@@ -367,20 +366,29 @@ TABBCalendario::BuscarLista( const TListaCalendario& lista ) const
 	TListaPos actual=lista.Primera(),anterior;
 	int* tmp=new int[lista.Longitud()];
 	int i=0;
-	
+	TVectorCalendario v=Inorden();
+	bool salir=false;
 	while(!actual.EsVacia())
 	{
-		if(Buscar(lista.Obtener(actual)) && !anterior.EsVacia())
-		{
-			tmp[i]=(lista.Obtener(actual)).Anyo();
-		}
-		else
-		{
-			tmp[i]=0;
-		}
+		
+			for (int j = 1; j <= v.Tamano() && !salir; j++)
+			{
+				if(v[j].Anyo()==lista.Obtener(actual).Anyo())
+				{
+					tmp[i]=v[j-1].Anyo();
+					salir=true;
+				}
+				else
+				{
+					tmp[i]=0;
+				}
+				
+			}
+			
 		anterior=actual;
 		actual=actual.Siguiente();
 		i++;
+		salir=false;
 	}
 	return tmp;
 }
