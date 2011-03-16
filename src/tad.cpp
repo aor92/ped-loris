@@ -1,6 +1,5 @@
 #include <iostream>
 #include "tabbcalendario.h"
-#include "tvectorcalendario.h"
 using namespace std;
 
 int
@@ -33,15 +32,14 @@ main(void)
   a.Insertar(c7);
   a.Insertar(c10);
 
-  lc.Insertar(c6);//2006 2003
-  lc.Insertar(c5);//2005 2005
-  lc.Insertar(c9);//2009 0
-  lc.Insertar(c10);//2010 2008
-  
-  TVectorCalendario va=a.Inorden();
+  lc.Insertar(c6);
+  lc.Insertar(c5);
+  lc.Insertar(c9);
+  lc.Insertar(c10);
+
   int *v = a.BuscarLista (lc);
   int n = lc.Longitud();
-	cout<<va<<endl;
+
   cout <<"Vector Enteros: ";
   for (int i=0; i<n; i++)
   {
