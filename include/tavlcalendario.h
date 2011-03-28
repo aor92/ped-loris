@@ -19,11 +19,11 @@ class TAVLCalendario
 		TNodoAVL *raiz;
 		
 		// Devuelve el recorrido en inorden
-		void InordenAux(TVectorCalendario &, int) const;
+		void InordenAux(TVectorCalendario &, int&) const;
 		// Devuelve el recorrido en preorden
-		void PreordenAux(TVectorCalendario &, int) const;
+		void PreordenAux(TVectorCalendario &, int&) const;
 		// Devuelve el recorrido en postorden
-		void PostordenAux(TVectorCalendario &, int) const;
+		void PostordenAux(TVectorCalendario &, int&) const;
 		
 		void Eliminar( TNodoAVL &);
 		
@@ -39,7 +39,7 @@ class TAVLCalendario
 		// Destructor
 		~ TAVLCalendario ();
 		// Sobrecarga del operador asignación
-		TAVLCalendario & operator=( TAVLCalendario &);
+		TAVLCalendario& operator=(const TAVLCalendario &);
 		// MÉTODOS de TAVLCalendario
 		// Sobrecarga del operador igualdad
 		bool operator==( TAVLCalendario &) const;
@@ -50,7 +50,7 @@ class TAVLCalendario
 		// Inserta el elemento en el árbol
 		bool Insertar(TCalendario &);
 		// Devuelve true si el elemento está en el árbol, false en caso contrario
-		bool Buscar(TCalendario &);
+		bool Buscar(TCalendario&);
 		// Devuelve la altura del árbol (la altura de un árbol vacío es 0)
 		int Altura() const ;
 		// Devuelve el número de nodos del árbol (un árbol vacío posee 0 nodos)
@@ -66,7 +66,7 @@ class TAVLCalendario
 		// Borra un TCalendario del árbol AVL
 		bool Borrar(TCalendario &);
 		// Devuelve el elemento TCalendario raíz del árbol AVL
-		TCalendario Raiz();
+		TCalendario Raiz() const;
 		// Sobrecarga del operador salida
 		friend ostream & operator<<(ostream &, TAVLCalendario &);
 
@@ -85,6 +85,8 @@ class TNodoAVL
 		TAVLCalendario de;
 		
 		int fe;
+		
+		void Eliminar(TNodoAVL &);
 		
 	public:
 	

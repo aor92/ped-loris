@@ -33,7 +33,7 @@ TNodoAVL::Eliminar( TNodoAVL &n)
 }
 
 TNodoAVL &
-TNodoAVL::operator =(const TNodoAVL & n )
+TNodoAVL::operator=(const TNodoAVL & n )
 {
 	if( this != &n)
 	{
@@ -65,16 +65,16 @@ TAVLCalendario&
 TAVLCalendario::operator=(const TAVLCalendario& avl)
 {
 	this->~TAVLCalendario();
-	if(this!=&acopiar)
+	if(this!=&avl)
 	{
-		Copiar(acopiar);
+		Copiar(avl);
 	}
 	
 	return (*this);
 }
 
 void 
-TABBCalendario::Copiar(const TAVLCalendario &acopiar)
+TAVLCalendario::Copiar(const TAVLCalendario &acopiar)
 {
 	if (acopiar.raiz!=NULL)
 	{
@@ -97,21 +97,21 @@ TAVLCalendario::~TAVLCalendario()
 }
 
 bool 
-TAVLCalendario::operator==( TAVLCalendario &)const 
+TAVLCalendario::operator==( TAVLCalendario & de)const 
 {
-	if((raiz!=NULL && der.raiz==NULL) || (raiz==NULL && der.raiz!=NULL))
+	if((raiz!=NULL && de.raiz==NULL) || (raiz==NULL && de.raiz!=NULL))
 	{
 		return false;
 	}
-	else if(raiz==NULL && der.raiz==NULL) return true;
-	else if(raiz->item!=der.raiz->item) return false;
-	else return(raiz->de==der.raiz->de && raiz->iz==der.raiz->iz);	
+	else if(raiz==NULL && de.raiz==NULL) return true;
+	else if(raiz->item!=de.raiz->item) return false;
+	else return(raiz->de==de.raiz->de && raiz->iz==de.raiz->iz);	
 }
 
 bool 
-TAVLCalendario::operator!=( TAVLCalendario & a)const 
+TAVLCalendario::operator!=( TAVLCalendario &a)const 
 {
-	return !(this==a);
+	return !(*this==a);
 }
 
 bool
@@ -225,4 +225,29 @@ TAVLCalendario::PostordenAux(TVectorCalendario& v, int& pos) const
 	}
 }
 
+bool 
+TAVLCalendario::Buscar(TCalendario &obj)
+{
+		if (!EsVacio()) return false;
+		else if (obj>raiz->item)
+		{
+			return raiz->de.Buscar(obj);
+		}
+		else if (obj<raiz->item)
+		{
+			return raiz->iz.Buscar(obj);
+		}
+		else if (obj==raiz->item) return true;
+			
+}
 
+
+TCalendario 
+TAVLCalendario::Raiz() const
+{
+		if (raiz!=NULL)
+		{
+			return raiz->item;
+		}
+		
+}
