@@ -29,6 +29,8 @@ class TAVLCalendario
 		
 		void Copiar(const TAVLCalendario & );
 		
+		void Equilibrar();
+		
 	
 	public:
 	
@@ -48,7 +50,7 @@ class TAVLCalendario
 		// Devuelve TRUE si el árbol está vacío, FALSE en caso contrario
 		bool EsVacio() const;
 		// Inserta el elemento en el árbol
-		bool Insertar(TCalendario &);
+		bool Insertar(const TCalendario &);
 		// Devuelve true si el elemento está en el árbol, false en caso contrario
 		bool Buscar(TCalendario&);
 		// Devuelve la altura del árbol (la altura de un árbol vacío es 0)
@@ -69,6 +71,7 @@ class TAVLCalendario
 		TCalendario Raiz() const;
 		// Sobrecarga del operador salida
 		friend ostream & operator<<(ostream &, TAVLCalendario &);
+		
 
 };
 

@@ -13,7 +13,7 @@ TNodoAVL::TNodoAVL( const TNodoAVL &n)
 
 TNodoAVL::~TNodoAVL()
 {
-	//Funcion auxiliar?
+	fe=0;
 }
 
 void 
@@ -111,7 +111,7 @@ TAVLCalendario::operator==( TAVLCalendario & de)const
 bool 
 TAVLCalendario::operator!=( TAVLCalendario &a)const 
 {
-	return !(*this==a);
+	return !(operator==(a));
 }
 
 bool
@@ -241,6 +241,96 @@ TAVLCalendario::Buscar(TCalendario &obj)
 			
 }
 
+bool 
+TAVLCalendario::Insertar(const TCalendario &c)
+{
+        bool ret = false;
+        if (raiz != NULL)
+        {
+                if (raiz->item == c)
+                {
+                        ret = false;
+                }
+                else
+                {
+                        if (raiz->item > c)
+                        {
+                                ret = raiz->iz.Insertar(c);
+                        }
+                        else
+                        {
+                                ret = raiz->de.Insertar(c);
+                        }
+                }
+        }
+        else
+        {       
+                ret = true;
+                raiz = new TNodoAVL();
+                raiz->item = c;
+        }
+        Equilibrar();
+        return ret;
+}
+
+void
+TAVLCalendario::Equilibrar()
+{
+	TNodoAVL *aux;
+        raiz->fe = raiz->de.Altura() - raiz->iz.Altura();       
+        if (raiz->fe > 1)
+        {
+                if (raiz->de.raiz->fe >= 0)
+                {
+                        aux = raiz->de.raiz;
+                        raiz->de.raiz = raiz->de.raiz->iz.raiz;
+                        aux->iz.raiz = raiz;
+                        raiz = aux;                     
+                }
+                else
+                {
+                        aux = raiz->de.raiz;
+                        raiz->de.raiz = aux->iz.raiz->iz.raiz;
+                        aux->iz.raiz->iz.raiz = raiz;
+                        raiz = aux->iz.raiz;
+                        aux->iz.raiz = raiz->de.raiz;
+                        raiz->de.raiz = aux;
+                }
+                raiz->fe = raiz->de.Altura() - raiz->iz.Altura();
+                if (raiz->iz.raiz != NULL)
+                {
+                        raiz->iz.raiz->fe = raiz->iz.raiz->de.Altura() - raiz->iz.raiz->iz.Altura();                    
+                }
+                if (raiz->de.raiz != NULL)
+                {
+                        raiz->de.raiz->fe = raiz->de.raiz->de.Altura() - raiz->de.raiz->iz.Altura();
+                }
+                                
+        }
+        else if (raiz->fe < -1)
+        {
+                if (raiz->iz.raiz->fe <= 0)
+                {
+                        aux = raiz->iz.raiz;
+                        raiz->iz.raiz = raiz->iz.raiz->de.raiz;
+                        aux->de.raiz = raiz;
+                        raiz = aux;
+                }
+                else
+                { 
+                        aux = raiz->iz.raiz;
+                        raiz->iz.raiz = aux->de.raiz->de.raiz;
+                        aux->de.raiz->de.raiz = raiz;
+                        raiz = aux->de.raiz;
+                        aux->de.raiz = raiz->iz.raiz;
+                        raiz->iz.raiz = aux;                                                    
+                }
+                raiz->fe = raiz->de.Altura() - raiz->iz.Altura();
+                raiz->iz.raiz->fe = raiz->iz.raiz->de.Altura() - raiz->iz.raiz->iz.Altura();
+                raiz->de.raiz->fe = raiz->de.raiz->de.Altura() - raiz->de.raiz->iz.Altura();
+        }
+	
+}
 
 TCalendario 
 TAVLCalendario::Raiz() const
@@ -249,5 +339,4 @@ TAVLCalendario::Raiz() const
 		{
 			return raiz->item;
 		}
-		
 }
