@@ -47,7 +47,10 @@ TNodoAVL::operator=(const TNodoAVL & n )
 /////////////AVLSTART//////////////////
 
 TAVLCalendario::TAVLCalendario()
-{}
+{
+		raiz=NULL;
+	//	raiz->de.raiz=raiz->iz.raiz=NULL;
+}
 
 TAVLCalendario::TAVLCalendario(const TAVLCalendario &avl )
 {
@@ -244,9 +247,11 @@ TAVLCalendario::Buscar(TCalendario &obj)
 bool 
 TAVLCalendario::Insertar(const TCalendario &c)
 {
+	cout<<"dentro de insertar"<<endl;
         bool ret = false;
         if (raiz != NULL)
         {
+			cout<<"raiz es no esta vacio"<<endl;
                 if (raiz->item == c)
                 {
                         ret = false;
@@ -265,11 +270,14 @@ TAVLCalendario::Insertar(const TCalendario &c)
         }
         else
         {       
+			cout<<"si esto sale bien"<<"linea 268"<<endl;
                 ret = true;
                 raiz = new TNodoAVL();
                 raiz->item = c;
         }
+        cout<<"esto debe salir 2"<<endl;
         Equilibrar();
+        cout<<"Factor de equilibrio: "<<raiz->fe<<endl;
         return ret;
 }
 
@@ -340,3 +348,15 @@ TAVLCalendario::Raiz() const
 			return raiz->item;
 		}
 }
+
+
+
+ostream&
+operator<<(ostream& os,const TAVLCalendario& avl)
+{
+	TVectorCalendario v = avl.Inorden();
+	os << v;
+	
+	return os;
+}
+

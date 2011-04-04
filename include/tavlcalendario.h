@@ -14,6 +14,7 @@ class TNodoAVL;
 class TAVLCalendario
 {
 	friend class TNodoAVL;
+	friend ostream& operator<<(ostream&,const TAVLCalendario&);
 	private:
 		
 		TNodoAVL *raiz;
@@ -69,8 +70,7 @@ class TAVLCalendario
 		bool Borrar(TCalendario &);
 		// Devuelve el elemento TCalendario raíz del árbol AVL
 		TCalendario Raiz() const;
-		// Sobrecarga del operador salida
-		friend ostream & operator<<(ostream &, TAVLCalendario &);
+	
 		
 
 };
@@ -79,6 +79,9 @@ class TAVLCalendario
 class TNodoAVL
 {
 	friend class TAVLCalendario;
+	
+	
+	
 	private:
 		
 		TCalendario item;

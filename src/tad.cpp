@@ -1,5 +1,6 @@
 #include <iostream>
 #include "tabbcalendario.h"
+#include "tavlcalendario.h"
 using namespace std;
 
 int
@@ -10,6 +11,8 @@ main(void)
 /***************************************************/
   TABBCalendario a,b, suma;
   TVectorCalendario vec;
+
+	TAVLCalendario avl;
 
   TCalendario c1(1,1,2001,"Fecha1");
   TCalendario c2(2,1,2002,"Fecha2");
@@ -22,6 +25,16 @@ main(void)
   TCalendario c9(7,1,2009,"Fecha9");
   TCalendario c10(8,1,2010,"Fecha10");
   
+ if (avl.EsVacio())
+ {
+	cout<<"esta vacio"<<endl;
+ }
+ else
+ {
+	cout<<"mewmew"<<endl;
+ }
+ 
+  /*
   TListaCalendario lc;
 
   a.Insertar(c6);
@@ -46,8 +59,17 @@ main(void)
 	cout << v[i];
 	if (i < n-1) cout<< ", ";
   }
-  cout<<endl;
+  cout<<endl;*/
   
+  avl.Insertar(c1);
+  avl.Insertar(c2);
+  avl.Insertar(c3);
+  avl.Insertar(c4);
+  avl.Insertar(c5);
+  avl.Insertar(c6);
+  
+cout << "Salida del vector insertado: " << endl;
+cout << avl;
 
   return 0; 
 
