@@ -67,7 +67,7 @@ class TAVLCalendario
 		// Devuelve el recorrido en postorden sobre un vector
 		TVectorCalendario Postorden() const;
 		// Borra un TCalendario del árbol AVL
-		bool Borrar(TCalendario &);
+		bool Borrar( const TCalendario &);
 		// Devuelve el elemento TCalendario raíz del árbol AVL
 		TCalendario Raiz() const;
 	

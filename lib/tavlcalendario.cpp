@@ -349,6 +349,93 @@ TAVLCalendario::Raiz() const
 		}
 }
 
+bool
+TAVLCalendario::Borrar(const TCalendario& c)
+{
+	bool borrado = false;
+
+	TNodoABB *padre = NULL; /* Para controlar si estamos en la raiz, y si no es asi saber el nodo anterior */
+	TNodoABB *actual; /* Nodo que estamos analizando en el momento */
+	TNodoABB *nodoAux; /* Nodo auxiliar que nos servirá para el intercambio de nodos */
+	TCalendario aux; /* TPoro auxiliar que nos servirá para el intercambio de nodos */
+
+	actual = raiz;
+	while(actual != NULL && !borrado) /* Búsqueda si el arbol está vacio no esta el item */
+	{
+		if(obj == actual -> item) /* Si hemos encontrado el item */
+		{
+			if(actual -> iz.EsVacio() && actual -> de.EsVacio()) /* Si es una hoja */
+			{
+				/* Si 'Padre' es NULL, el nodo raíz es el único del árbol,
+				por lo tanto el puntero al árbol debe ser NULL */
+				if(padre != NULL)
+				{
+					/* Si la rama de es la no vacia es la que debemos borrar */
+					if(padre -> de.raiz == actual) padre -> de.raiz = NULL;
+					/* Si la rama iz es la no vacia es la que debemos borrar */
+					else if(padre -> iz.raiz == actual) padre -> iz.raiz = NULL;
+				}
+				if(padre == NULL) /* Si es la raiz */
+				{
+					delete raiz;
+					raiz = NULL;
+					borrado = true;
+					actual = raiz;
+				}
+				if(actual != NULL) delete actual; // Borrar el nodo
+					
+				actual = NULL;
+				borrado = true;
+			}
+			else /* El nodo no es un nodo hoja */
+			{
+				/* Buscar nodo */
+				/* Buscamos el 'nodo' más a la izquierda del árbol derecho de raíz o el más a */
+				/* la derecha del árbol izquierdo. Hay que tener en cuenta que puede que sólo */
+				/* exista uno de esos árboles. Al mismo tiempo, actualizamos 'Padre' para que */
+				/* apunte al padre de 'nodo'. */
+				padre = actual;
+				/* Si el hijoDe no esta vacio y el hijoIZ si, sustituir por el hijoDE */
+				if(!actual -> de.EsVacio() && actual -> iz.EsVacio())
+				{
+					nodoAux = actual -> de.raiz;
+				}
+				/* Si el hijoIZ no esta vacio y el hijoDE si, sustituir por el hijoIZ */
+				else if(actual -> de.EsVacio() && !actual -> iz.EsVacio())
+				{
+					nodoAux = actual -> iz.raiz;
+				}
+				else if(!actual -> iz.EsVacio())
+				{
+					nodoAux = actual -> iz.raiz;
+					while(!nodoAux -> de.EsVacio())
+					{
+						padre = nodoAux;
+						nodoAux = nodoAux -> de.raiz;
+					}
+				}
+				/* Intercambio */
+				aux = actual -> item; /* Intercambiamos los elementos de los nodos raíz y 'nodo' */
+				actual -> item = nodoAux -> item;
+				nodoAux -> item = aux;
+				actual = nodoAux;
+			}
+		}
+		else /* Si no hemos encontrado el item */
+		{
+			padre = actual;
+			 /* Si el elemento es mayor que el actual continuaremos buscando por el lado de */
+			if(obj > actual -> item) actual = actual -> de.raiz;
+			/* Si el elemento es menor que el actual continuaremos buscando por el lado iz */
+			else if(obj< actual -> item) actual = actual -> iz.raiz;
+		
+		}
+	}
+
+	Equilibrar();
+
+	return borrado;
+}
 
 
 ostream&
