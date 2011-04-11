@@ -24,7 +24,10 @@ main(void)
   TCalendario c8(8,1,2008,"Fecha8");
   TCalendario c9(7,1,2009,"Fecha9");
   TCalendario c10(8,1,2010,"Fecha10");
-  
+ 
+ 
+ 
+ 
  if (avl.EsVacio())
  {
 	cout<<"esta vacio"<<endl;
@@ -34,9 +37,9 @@ main(void)
 	cout<<"mewmew"<<endl;
  }
  
-  /*
-  TListaCalendario lc;
-
+  
+  //TListaCalendario lc;
+/*
   a.Insertar(c6);
   a.Insertar(c3);
   a.Insertar(c1);
@@ -44,6 +47,9 @@ main(void)
   a.Insertar(c8);
   a.Insertar(c7);
   a.Insertar(c10);
+  
+  
+  
 
   lc.Insertar(c6);
   lc.Insertar(c5);
@@ -67,6 +73,20 @@ main(void)
   avl.Insertar(c4);
   avl.Insertar(c5);
   avl.Insertar(c6);
+  cout << "AVL despues de insertar: " << avl << endl;
+  
+  avl.Borrar(c6);
+  cout << "AVL: " << avl << endl;
+  avl.Borrar(c3);
+  cout << "AVL: " << avl << endl;
+  avl.Borrar(c1);
+  cout << "AVL: " << avl << endl;
+  avl.Borrar(c5);
+  cout << "AVL: " << avl << endl;
+  avl.Borrar(c4);
+  cout << "AVL: " << avl << endl;
+  avl.Borrar(c2);
+  cout << "AVL: " << avl << endl;
   
 cout << "Salida del vector insertado: " << endl;
 cout << avl;

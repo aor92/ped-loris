@@ -247,11 +247,11 @@ TAVLCalendario::Buscar(TCalendario &obj)
 bool 
 TAVLCalendario::Insertar(const TCalendario &c)
 {
-	cout<<"dentro de insertar"<<endl;
+	//~ cout<<"dentro de insertar"<<endl;
         bool ret = false;
         if (raiz != NULL)
         {
-			cout<<"raiz es no esta vacio"<<endl;
+			//~ cout<<"raiz es no esta vacio"<<endl;
                 if (raiz->item == c)
                 {
                         ret = false;
@@ -270,14 +270,14 @@ TAVLCalendario::Insertar(const TCalendario &c)
         }
         else
         {       
-			cout<<"si esto sale bien"<<"linea 268"<<endl;
+			//~ cout<<"si esto sale bien"<<"linea 268"<<endl;
                 ret = true;
                 raiz = new TNodoAVL();
                 raiz->item = c;
         }
-        cout<<"esto debe salir 2"<<endl;
+        //~ cout<<"esto debe salir 2"<<endl;
         Equilibrar();
-        cout<<"Factor de equilibrio: "<<raiz->fe<<endl;
+        //~ cout<<"Factor de equilibrio: "<<raiz->fe<<endl;
         return ret;
 }
 
@@ -285,6 +285,9 @@ void
 TAVLCalendario::Equilibrar()
 {
 	TNodoAVL *aux;
+	
+	if( raiz != NULL )
+	{
         raiz->fe = raiz->de.Altura() - raiz->iz.Altura();       
         if (raiz->fe > 1)
         {
@@ -337,7 +340,7 @@ TAVLCalendario::Equilibrar()
                 raiz->iz.raiz->fe = raiz->iz.raiz->de.Altura() - raiz->iz.raiz->iz.Altura();
                 raiz->de.raiz->fe = raiz->de.raiz->de.Altura() - raiz->de.raiz->iz.Altura();
         }
-	
+	}
 }
 
 TCalendario 
@@ -350,13 +353,13 @@ TAVLCalendario::Raiz() const
 }
 
 bool
-TAVLCalendario::Borrar(const TCalendario& c)
+TAVLCalendario::Borrar(const TCalendario& obj)
 {
 	bool borrado = false;
 
-	TNodoABB *padre = NULL; /* Para controlar si estamos en la raiz, y si no es asi saber el nodo anterior */
-	TNodoABB *actual; /* Nodo que estamos analizando en el momento */
-	TNodoABB *nodoAux; /* Nodo auxiliar que nos servirá para el intercambio de nodos */
+	TNodoAVL *padre = NULL; /* Para controlar si estamos en la raiz, y si no es asi saber el nodo anterior */
+	TNodoAVL *actual; /* Nodo que estamos analizando en el momento */
+	TNodoAVL *nodoAux; /* Nodo auxiliar que nos servirá para el intercambio de nodos */
 	TCalendario aux; /* TPoro auxiliar que nos servirá para el intercambio de nodos */
 
 	actual = raiz;
