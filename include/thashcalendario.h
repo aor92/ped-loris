@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "tcalendario.h"
+#include "tlistacalendario.h"
 
 class THASHCalendario
 {
