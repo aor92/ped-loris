@@ -9,7 +9,7 @@ main(void)
 /***************************************************/
 /***************** BUSCARLISTA	********************/
 /***************************************************/
-  TABBCalendario a,b, suma;
+  TAVLCalendario a;
   TVectorCalendario vec;
 
 	TAVLCalendario avl;
@@ -41,6 +41,7 @@ main(void)
   //TListaCalendario lc;
 /*
   a.Insertar(c6);
+  cout<<"primero bien"<<endl;
   a.Insertar(c3);
   a.Insertar(c1);
   a.Insertar(c5);
@@ -51,13 +52,14 @@ main(void)
   
   
 
-  lc.Insertar(c6);
-  lc.Insertar(c5);
-  lc.Insertar(c9);
-  lc.Insertar(c10);
+  a.Insertar(c6);
+  a.Insertar(c5);
+  a.Insertar(c9);
+  a.Insertar(c10);
 
-  int *v = a.BuscarLista (lc);
-  int n = lc.Longitud();
+	cout<<a.Inorden()<<endl;
+  //int *v = a.BuscarLista (lc);
+  /*int n = lc.Longitud();
 
   cout <<"Vector Enteros: ";
   for (int i=0; i<n; i++)

@@ -1,4 +1,4 @@
-#include "thashcalendario.cpp"
+#include "thashcalendario.h"
 
 
 THASHCalendario::THASHCalendario()
