@@ -18,6 +18,9 @@ class THASHCalendario
 		THASHCalendario(int);
 		THASHCalendario(const THASHCalendario&);
 		~THASHCalendario();
+		THASHCalendario & operator=( const THASHCalendario &);
+		
+		bool operator==(const THASHCalendario&);
 };
 
 

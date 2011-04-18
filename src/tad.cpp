@@ -1,6 +1,7 @@
 #include <iostream>
 #include "tabbcalendario.h"
 #include "tavlcalendario.h"
+#include "thashcalendario.h"
 using namespace std;
 
 int
@@ -25,18 +26,7 @@ main(void)
   TCalendario c9(7,1,2009,"Fecha9");
   TCalendario c10(8,1,2010,"Fecha10");
  
- 
- 
- 
- if (avl.EsVacio())
- {
-	cout<<"esta vacio"<<endl;
- }
- else
- {
-	cout<<"mewmew"<<endl;
- }
- 
+THASHCalendario hash();
   
   //TListaCalendario lc;
 /*
@@ -67,7 +57,7 @@ main(void)
 	cout << v[i];
 	if (i < n-1) cout<< ", ";
   }
-  cout<<endl;*/
+  cout<<endl;
   
   avl.Insertar(c1);
   avl.Insertar(c2);
@@ -91,7 +81,7 @@ main(void)
   cout << "AVL: " << avl << endl;
   
 cout << "Salida del vector insertado: " << endl;
-cout << avl;
+cout << avl;*/
 
   return 0; 
 
