@@ -20,3 +20,17 @@ THASHCalendario::THASHCalendario(int t)
 		tabla = new TListaCalendario[t];
 	}
 }
+
+THASHCalendario::THASHCalendario(const THASHCalendario& cop)
+{
+	if (this!=&cop)
+	{
+		tamanyo=cop.tamanyo;
+		tabla= new TListaCalendario[tamanyo];
+		for (int i = 0; i < tamanyo; i++)
+		{
+			tabla[i]=cop.tabla[i];
+		}
+		
+	}
+}
