@@ -82,3 +82,15 @@ THASHCalendario::operator==(const THASHCalendario& hash)
 	
 	return igual;
 }
+
+bool 
+THASHCalendario::EsVacia()
+{
+		return (tabla==NULL);
+}
+
+bool
+THASHCalendario::Insertar(TCalendario &cal)
+{
+	
+}
