@@ -100,7 +100,7 @@ TAVLCalendario::~TAVLCalendario()
 }
 
 bool 
-TAVLCalendario::operator==( TAVLCalendario & de)const 
+TAVLCalendario::operator==( const TAVLCalendario & de)const 
 {
 	if((raiz!=NULL && de.raiz==NULL) || (raiz==NULL && de.raiz!=NULL))
 	{
@@ -112,7 +112,7 @@ TAVLCalendario::operator==( TAVLCalendario & de)const
 }
 
 bool 
-TAVLCalendario::operator!=( TAVLCalendario &a)const 
+TAVLCalendario::operator!=( const TAVLCalendario &a)const 
 {
 	return !(operator==(a));
 }
@@ -229,7 +229,7 @@ TAVLCalendario::PostordenAux(TVectorCalendario& v, int& pos) const
 }
 
 bool 
-TAVLCalendario::Buscar(TCalendario &obj)
+TAVLCalendario::Buscar( const TCalendario &obj)
 {
 		if (!EsVacio()) return false;
 		else if (obj>raiz->item)

@@ -23,11 +23,11 @@ class THASHCalendario
 		// Devuelve true si la tabla está vacía, false en caso contrario
 		bool EsVacia();
 		// Inserta el elemento en la tabla
-		bool Insertar(TCalendario &);
+		bool Insertar( const TCalendario &);
 		// Busca y borra el elemento de la tabla
-		bool Borrar(TCalendario &);
+		bool Borrar( const TCalendario &);
 		// Devuelve TRUE si el elemento está en la tabla, FALSE en caso contrario
-		bool Buscar(TCalendario &);
+		bool Buscar( const TCalendario &);
 		// Devuelve el tamaño de la tabla
 		int Tamanyo();
 		// Devuelve el número de elementos en la tabla

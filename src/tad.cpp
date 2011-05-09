@@ -47,9 +47,9 @@ THASHCalendario hash();
   a.Insertar(c9);
   a.Insertar(c10);
 
-	cout<<a.Inorden()<<endl;
+	cout<<a.Inorden()<<endl;*/
   //int *v = a.BuscarLista (lc);
-  /*int n = lc.Longitud();
+ /* int n = lc.Longitud();
 
   cout <<"Vector Enteros: ";
   for (int i=0; i<n; i++)
@@ -57,7 +57,7 @@ THASHCalendario hash();
 	cout << v[i];
 	if (i < n-1) cout<< ", ";
   }
-  cout<<endl;
+  cout<<endl;*/
   
   avl.Insertar(c1);
   avl.Insertar(c2);
@@ -81,7 +81,7 @@ THASHCalendario hash();
   cout << "AVL: " << avl << endl;
   
 cout << "Salida del vector insertado: " << endl;
-cout << avl;*/
+cout << avl;
 
   return 0; 
 

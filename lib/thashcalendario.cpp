@@ -90,7 +90,57 @@ THASHCalendario::EsVacia()
 }
 
 bool
-THASHCalendario::Insertar(TCalendario &cal)
+THASHCalendario::Insertar( const TCalendario &cal)
 {
 	
+}
+
+bool
+THASHCalendario::Borrar( const TCalendario &cal)
+{
+}
+
+bool
+THASHCalendario::Buscar( const TCalendario &cal)
+{
+}
+
+int
+THASHCalendario::Tamanyo()
+{
+	return tamanyo;
+}
+
+int
+THASHCalendario::NElementos()
+{
+	int sumares = 0;
+	
+	for (int i = 0; i < tamanyo; i++)
+	{
+		//~ tabla[i]=cop.tabla[i];
+		sumares += tabla[i].Longitud();                              
+	}
+	
+	return sumares;
+}
+
+TListaCalendario
+THASHCalendario::Lista()
+{
+	TListaCalendario listaRes;
+	
+	int totalElem = 0;
+	//~ totalElem = tabla.NElementos();
+	
+	TListaPos lPos;
+	
+	for(int i=0; i < tamanyo; i++)
+	{
+		for()
+		{
+		}
+	}
+	
+	return listaRes;
 }

@@ -45,15 +45,15 @@ class TAVLCalendario
 		TAVLCalendario& operator=(const TAVLCalendario &);
 		// MÉTODOS de TAVLCalendario
 		// Sobrecarga del operador igualdad
-		bool operator==( TAVLCalendario &) const;
+		bool operator==( const TAVLCalendario &) const;
 		// Sobrecarga del operador desigualdad
-		bool operator!=( TAVLCalendario &) const;
+		bool operator!=( const TAVLCalendario &) const;
 		// Devuelve TRUE si el árbol está vacío, FALSE en caso contrario
 		bool EsVacio() const;
 		// Inserta el elemento en el árbol
 		bool Insertar(const TCalendario &);
 		// Devuelve true si el elemento está en el árbol, false en caso contrario
-		bool Buscar(TCalendario&);
+		bool Buscar( const TCalendario&);
 		// Devuelve la altura del árbol (la altura de un árbol vacío es 0)
 		int Altura() const ;
 		// Devuelve el número de nodos del árbol (un árbol vacío posee 0 nodos)
