@@ -92,7 +92,17 @@ THASHCalendario::EsVacia()
 bool
 THASHCalendario::Insertar( const TCalendario &cal)
 {
+	bool insertado = false;
 	
+	
+	
+	return insertado;
+}
+
+int
+THASHCalendario::H(const TCalendario )
+{
+	//Como juntar los int del calendario?? strings???
 }
 
 bool
@@ -137,8 +147,9 @@ THASHCalendario::Lista()
 	
 	for(int i=0; i < tamanyo; i++)
 	{
-		for()
+		for( lPos = tabla[i].Primera(); !lPos.EsVacia() ; lPos.Siguiente() )
 		{
+			listaRes.Insertar(tabla[i].Obtener(lPos));
 		}
 	}
 	

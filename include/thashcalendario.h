@@ -11,6 +11,8 @@ class THASHCalendario
 		
 		int tamanyo;
 		TListaCalendario *tabla;
+		
+		int H(const TCalendario);
 	
 	public:
 	
