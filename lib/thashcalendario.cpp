@@ -1,4 +1,5 @@
 #include "thashcalendario.h"
+#include "string.h"
 
 
 THASHCalendario::THASHCalendario()
@@ -100,14 +101,25 @@ THASHCalendario::Insertar( const TCalendario &cal)
 }
 
 int
-THASHCalendario::H(const TCalendario )
+THASHCalendario::H(const TCalendario c )
 {
 	//Como juntar los int del calendario?? strings???
+	string sAux;
+	int modulo = 0, numeFecha = 0;
+	
+	
+	//Prueba, si no usamos "itoa()"
+	sAux = c.Dia() + c.Mes() + c.Anyo();
+	
+	modulo = numeFecha % tamanyo;
+	
+	return modulo;
 }
 
 bool
 THASHCalendario::Borrar( const TCalendario &cal)
 {
+	
 }
 
 bool
