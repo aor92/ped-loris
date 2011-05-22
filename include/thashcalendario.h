@@ -37,7 +37,7 @@ class THASHCalendario
 		// Devuelve todos los elementos de la tabla en una lista ordenada
 		TListaCalendario Lista() const;
 		// Búsqueda en un HASH a través de una lista auxiliar
-		int* BuscarLista( TListaCalendario &);
+		int* BuscarLista( const TListaCalendario &) const;
 
 };
 

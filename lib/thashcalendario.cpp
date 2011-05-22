@@ -193,3 +193,46 @@ THASHCalendario::Lista() const
 	return listaRes;
 	
 }
+
+int*
+THASHCalendario::BuscarLista(const TListaCalendario& lista)const 
+{
+	int *result= new int[lista.Longitud()];
+	TListaCalendario tabla_en_lista=Lista();
+	TListaPos actual=lista.Primera();
+	TListaPos actual_tabla=tabla_en_lista.Primera(); //volcamos tabla a una lista
+	
+	int pos_en_lista=1;
+	int pos_en_listatabla=1;
+	
+	while (!actual.EsVacia() && Tamanyo()>0)
+	{
+		if(tabla_en_lista.Buscar(lista.Obtener(actual)))//Entra si es encontrado en la tabla
+		{
+			while(!actual_tabla.EsVacia())
+			{
+				if (lista.Obtener(actual)==tabla_en_lista.Obtener(actual_tabla))
+				{
+					result[pos_en_lista]=pos_en_listatabla;
+					actual_tabla=actual_tabla.Siguiente();
+					pos_en_listatabla++;
+				}
+				else
+				{
+					actual_tabla=actual_tabla.Siguiente();
+					pos_en_listatabla++;
+				}
+				
+			}
+			
+		}
+		else//No esta en la tabla hash
+		{
+			result[pos_en_lista]=0;
+		}
+		pos_en_lista++;
+		actual=actual.Siguiente();
+	}
+	
+	return result;
+}
