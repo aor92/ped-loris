@@ -1,45 +1,32 @@
-#include <iostream>
-#include "tabbcalendario.h"
-using namespace std;
-
+// Tamanyo
+#include "thashcalendario.h"
 int
-main(void)
+main()
 {
-/************************************************/
-/***************** INORDEN, "=="                */
-/************************************************/
-
-  TABBCalendario a,b;
-  TVectorCalendario vec, vec2;
-
-  TCalendario c1(1,1,2011,"Fecha1");
-  TCalendario c2(2,1,2011,"Fecha2");
-  TCalendario c3(3,1,2011,"Fecha3");
-  TCalendario c4(4,1,2011,"Fecha4");
-  TCalendario c5(5,1,2011,"Fecha5");
-  TCalendario c6(6,1,2011,"Fecha6");
-
-  a.Insertar(c5);
-  a.Insertar(c2);
-  a.Insertar(c1);
-  a.Insertar(c3);
-  a.Insertar(c6);
-
-
-  vec = a.Inorden();
-  b = a;
+  THASHCalendario b(4);
  
-  vec2 = b.Inorden();
-  if ( vec == vec2 ) 
-	{cout << "IGUALES"<< endl;}
-  else 
-	{cout << "NO IGUALES"<< endl;}
+  TCalendario c1(1,1,2011,(const char *)"Fecha1");
+  TCalendario c2(2,1,2011,(const char *)"Fecha2");
+  TCalendario c3(3,1,2011,(const char *)"Fecha3");
+  TCalendario c4(4,1,2011,(const char *)"Fecha4");
+  TCalendario c5(5,1,2011,(const char *)"Fecha5");
 
-  vec2 = b.Preorden();
-  if ( vec == vec2 ) 
-	{cout << "IGUALES"<< endl;}
-  else 
-	{cout << "NO IGUALES"<< endl;}
 
-  return 0; 
+  b.Insertar(c1);
+  cout << b.Tamanyo() << endl;
+
+  b.Insertar(c2);
+  cout << b.Tamanyo() << endl;
+
+  b.Insertar(c3);
+  cout << b.Tamanyo() << endl;
+
+  b.Insertar(c4);
+  cout << b.Tamanyo() << endl;
+  
+  b.Insertar(c5);
+  cout << b.Tamanyo() << endl;
+ 
+    return 0; 
 }
+

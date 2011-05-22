@@ -211,21 +211,26 @@ TListaCalendario::operator==(const TListaCalendario &lista) const
 }
 
 TListaCalendario
-TListaCalendario::operator+ (const TListaCalendario &lista)
+TListaCalendario::operator+ (const TListaCalendario &der)
 {
+
 	TListaPos aux;
-	aux= lista.Primera();
-	TListaCalendario listaAux(*this);
 	
+	TListaCalendario listaAux;
 	
-	while(!aux.EsVacia())
+	if (!der.EsVacia())
 	{
-		listaAux.Insertar(Obtener(aux));
+		listaAux=*this;
+		aux= der.Primera();
+		while(!aux.EsVacia())
+		{
+			listaAux.Insertar(Obtener(aux));
+			aux= aux.Siguiente();
+		}
+	}else listaAux=der;
 		
-		aux= aux.Siguiente();
-	}
-	
 	return listaAux;
+	
 }
 		
 TListaCalendario

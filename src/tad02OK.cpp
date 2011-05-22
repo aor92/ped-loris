@@ -1,19 +1,27 @@
-#include <iostream>
-#include "tabbcalendario.h"
-using namespace std;
-
+//Insertar, operadores asignación e ==
+#include "thashcalendario.h"
 int
-main(void)
+main()
 {
-/************************************************/
-/* CONSTRUCTOR COPIA Y ASIGNACION ARBOLES VACIOS		
-/************************************************/
-  TABBCalendario a,c;
+  THASHCalendario a,b(4);
+ 
+  TCalendario c1(1,1,2011,(const char *)"Fecha1");
+  TCalendario c2(2,1,2011,(const char *)"Fecha2");
+  TCalendario c3(3,1,2011,(const char *)"Fecha3");
+  TCalendario c4(4,1,2011,(const char *)"Fecha4");
+  TCalendario c5(5,1,2011,(const char *)"Fecha5");
 
-  TABBCalendario b(a);
-  
-  c=b;
-  
-  cout << "No hace nada" << endl;
-  return 0;
+  b.Insertar(c1);
+  b.Insertar(c2);
+  b.Insertar(c3);
+  b.Insertar(c4);
+  b.Insertar(c5);
+ 
+ a = b;
+  if(a==b) 
+     cout<<"IGUALES"<<endl;
+
+cout<<a<<endl;
+cout<<b<<endl;
+    return 0; 
 }

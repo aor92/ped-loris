@@ -15,7 +15,7 @@ class THASHCalendario
 		int H(const TCalendario) const;
 	
 	public:
-	
+		friend ostream& operator<<( ostream&, THASHCalendario &);
 		THASHCalendario();
 		THASHCalendario(int);
 		THASHCalendario(const THASHCalendario&);

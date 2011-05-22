@@ -1,89 +1,46 @@
-#include <iostream>
-#include "tabbcalendario.h"
-#include "tavlcalendario.h"
+//BuscarLista
 #include "thashcalendario.h"
-using namespace std;
-
 int
-main(void)
+main()
 {
-/***************************************************/
-/***************** BUSCARLISTA	********************/
-/***************************************************/
-  TAVLCalendario a;
-  TVectorCalendario vec;
+  THASHCalendario a, b(5);
+  TListaCalendario tc;
 
-	TAVLCalendario avl;
+  TCalendario c1(1,1,2011,(const char *)"Fecha1");
+  TCalendario c2(2,1,2011,(const char *)"Fecha2");
+  TCalendario c3(3,1,2011,(const char *)"Fecha3");
+  TCalendario c4(4,1,2011,(const char *)"Fecha4");
+  TCalendario c5(5,1,2011,(const char *)"Fecha5");
+  TCalendario c6(6,1,2011,(const char *)"Fecha6");
+  TCalendario c7(7,1,2011,(const char *)"Fecha7");
+  TCalendario c8(8,1,2011,(const char *)"Fecha8");
 
-  TCalendario c1(1,1,2001,"Fecha1");
-  TCalendario c2(2,1,2002,"Fecha2");
-  TCalendario c3(3,1,2003,"Fecha3");
-  TCalendario c4(4,1,2004,"Fecha4");
-  TCalendario c5(5,1,2005,"Fecha5");
-  TCalendario c6(6,1,2006,"Fecha6");
-  TCalendario c7(7,1,2007,"Fecha7");
-  TCalendario c8(8,1,2008,"Fecha8");
-  TCalendario c9(7,1,2009,"Fecha9");
-  TCalendario c10(8,1,2010,"Fecha10");
+  int *v = b.BuscarLista(tc);
  
-THASHCalendario hash();
+  if (!v) cout<<"La lista estaba vacia"<<endl;
+  else cout<<"La lista no estaba vacia"<<endl;
+ 
+  b.Insertar(c1);
+  b.Insertar(c2);
+  b.Insertar(c3);
+  b.Insertar(c4);
+  b.Insertar(c5);
+  b.Insertar(c6);
+  b.Insertar(c8);
   
-  //TListaCalendario lc;
-/*
-  a.Insertar(c6);
-  cout<<"primero bien"<<endl;
-  a.Insertar(c3);
-  a.Insertar(c1);
-  a.Insertar(c5);
-  a.Insertar(c8);
-  a.Insertar(c7);
-  a.Insertar(c10);
-  
-  
-  
-
-  a.Insertar(c6);
-  a.Insertar(c5);
-  a.Insertar(c9);
-  a.Insertar(c10);
-
-	cout<<a.Inorden()<<endl;*/
-  //int *v = a.BuscarLista (lc);
- /* int n = lc.Longitud();
-
-  cout <<"Vector Enteros: ";
-  for (int i=0; i<n; i++)
-  {
-	cout << v[i];
-	if (i < n-1) cout<< ", ";
-  }
-  cout<<endl;*/
-  
-  avl.Insertar(c1);
-  avl.Insertar(c2);
-  avl.Insertar(c3);
-  avl.Insertar(c4);
-  avl.Insertar(c5);
-  avl.Insertar(c6);
-  cout << "AVL despues de insertar: " << avl << endl;
-  
-  avl.Borrar(c6);
-  cout << "AVL: " << avl << endl;
-  avl.Borrar(c3);
-  cout << "AVL: " << avl << endl;
-  avl.Borrar(c1);
-  cout << "AVL: " << avl << endl;
-  avl.Borrar(c5);
-  cout << "AVL: " << avl << endl;
-  avl.Borrar(c4);
-  cout << "AVL: " << avl << endl;
-  avl.Borrar(c2);
-  cout << "AVL: " << avl << endl;
-  
-cout << "Salida del vector insertado: " << endl;
-cout << avl;
-
-  return 0; 
-
+  tc.Insertar(c1);
+  tc.Insertar(c6);
+  tc.Insertar(c7);
+  tc.Insertar(c8);
+ 
+  v = b.BuscarLista(tc);
+  for (int i=0; i<tc.Longitud(); i++)
+	cout<<v[i]<<" ";
+  cout<<endl;
+  delete [] v;
+ 
+    return 0; 
 }
+
+
 

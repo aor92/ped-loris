@@ -1,61 +1,29 @@
-#include <iostream>
-
-using namespace std;
-
-#include "tcalendario.h"
-#include "tpilacalendario.h"
-
+// Buscar y Lista
+#include "thashcalendario.h"
 int
-main(void)
+main()
 {
-  TCalendario c1(14, 12, 1966, (char*) "Fecha Correcta");
-  TCalendario c2(1, 1, 1954, (char*) "Fecha Correcta");
-  TPilaCalendario p1;
+  THASHCalendario a,b(4);
+ 
+  TCalendario c1(1,1,2011,(const char *)"Fecha1");
+  TCalendario c2(2,1,2011,(const char *)"Fecha2");
+  TCalendario c3(3,1,2011,(const char *)"Fecha3");
+  TCalendario c4(4,1,2011,(const char *)"Fecha4");
+  TCalendario c5(5,1,2011,(const char *)"Fecha5");
 
-  if(p1.EsVacia()) 
-	cout << "pila vacia" << endl;
-  else 
-	cout << "pila no vacia" << endl;
+  b.Insertar(c1);
+ 
+  if ( !b.Buscar(c5) ) 
+     cout<<"NO ESTA EL ELEMENTO"<<endl;
+  else
+     cout<<b.Lista()<<endl;
+
+  b.Insertar(c5);
+  if(!b.Buscar(c5)) 
+     cout<<"NO ESTA EL ELEMENTO"<<endl;
+  else
+     cout<<b.Lista()<<endl;
+
   
-  p1.Apilar(c1); 
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  p1.Apilar(c2);
-  
-  if(p1.EsVacia()) 
-	cout << "pila vacia" << endl;
-  else 
-	cout << "pila no vacia" << endl;
-
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-  p1.Desapilar();
-
-  if(p1.EsVacia()) 
-	cout << "pila vacia" << endl;
-  else 
-	cout << "pila no vacia" << endl;
-
-  return 0;
+    return 0; 
 }

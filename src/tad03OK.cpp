@@ -1,28 +1,29 @@
-#include <iostream>
-
-using namespace std;
-
-#include "tcalendario.h"
-#include "tpilacalendario.h"
-
+//Constructor copia y NElementos
+#include "thashcalendario.h"
 int
-main(void)
+main()
 {
-  TCalendario c1(14, 12, 1966, (char*) "Fecha Correcta");
-  TCalendario c2(1, 1, 1954, (char*) "Fecha Correcta");
-  TPilaCalendario p1;
+  THASHCalendario a,b(4);
+ 
+  TCalendario c1(1,1,2011,(const char *)"Fecha1");
+  TCalendario c2(2,1,2011,(const char *)"Fecha2");
+  TCalendario c3(3,1,2011,(const char *)"Fecha3");
+  TCalendario c4(4,1,2011,(const char *)"Fecha4");
+  TCalendario c5(5,1,2011,(const char *)"Fecha5");
 
-  cout << p1 << endl;
+  b.Insertar(c1);
+  b.Insertar(c2);
+  b.Insertar(c3);
+  b.Insertar(c4);
+  b.Insertar(c5);
+
+  cout << "NElementos : " << b.NElementos() << endl;
+
+  THASHCalendario c(b);
+  if (c.Insertar(c5)) cout <<"Elemento insertado"<<endl;
+  else cout <<"Elemento no insertado"<<endl;
+  cout << "NElementos : " << c.NElementos() << endl;
+
   
-  p1.Apilar(c1); 
-  p1.Apilar(c2);
-
-  cout << p1 << endl;
-
-  p1.Desapilar();
-  p1.Desapilar();
-
-  cout << p1 << endl;
-
-  return 0;
+    return 0; 
 }

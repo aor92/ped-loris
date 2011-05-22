@@ -24,10 +24,11 @@ THASHCalendario::THASHCalendario(int t)
 
 THASHCalendario::~THASHCalendario()
 {
-	for (int i = 0; i < tamanyo; i++)
+	if (tabla!=NULL)
 	{
-		delete &tabla[i];
+		delete[] tabla;
 	}
+	tabla=NULL;
 	
 	tamanyo = 0;
 }
@@ -67,15 +68,17 @@ THASHCalendario::operator==(const THASHCalendario& hash)
 	
 	if( tamanyo == hash.tamanyo)
 	{
-		bool flag = true;
 		
-		for(int i = 0; i < tamanyo && flag; i++)
+		for(int i = 0; i < tamanyo && igual; i++)
 		{
-			if( &tabla[i] != &hash.tabla[i])
+			if( tabla[i] == hash.tabla[i])
 			{
-				igual = false;
-				flag = false;
 			}
+			else
+			{
+				igual=false;
+			}
+			
 		}
 	}
 	else igual = false;
@@ -98,8 +101,7 @@ THASHCalendario::Insertar( const TCalendario &cal)
 	
 	if (tabla!=NULL && Tamanyo()>0)
 	{
-		tabla[pos].Insertar(cal);
-		insertado=true;
+		insertado=tabla[pos].Insertar(cal);
 	}
 	
 	return insertado;
@@ -119,13 +121,13 @@ bool
 THASHCalendario::Borrar( const TCalendario &cal)
 {
 	bool insertado = false;
-	int pos=H(cal);
-	
+		
 	if (tabla!=NULL && Tamanyo()>0)
 	{
-		tabla[pos].Borrar(cal);
-		insertado=true;
-	}
+		int pos=H(cal);
+		insertado=tabla[pos].Borrar(cal);
+
+	}else insertado=false;
 	
 	return insertado;
 }
@@ -138,8 +140,7 @@ THASHCalendario::Buscar( const TCalendario &cal)
 	
 	if (tabla!=NULL && Tamanyo()>0)
 	{
-		tabla[pos].Buscar(cal);
-		insertado=true;
+		insertado=tabla[pos].Buscar(cal);
 	}
 	
 	return insertado;
@@ -168,6 +169,7 @@ THASHCalendario::NElementos() const
 TListaCalendario
 THASHCalendario::Lista() const
 {
+	
 	TListaCalendario listaRes;
 	
 	//~ int totalElem = 0;
@@ -185,7 +187,7 @@ THASHCalendario::Lista() const
 	//~ 
 	//~ return listaRes;
 	
-	for (int i = 0; i < Tamanyo(); i++)
+	for (int i = 0; i < Tamanyo() && tabla!=NULL; i++)
 	{
 		listaRes=listaRes+tabla[i];//el operador suma de las listas lo permite.
 	}
@@ -198,41 +200,63 @@ int*
 THASHCalendario::BuscarLista(const TListaCalendario& lista)const 
 {
 	int *result= new int[lista.Longitud()];
-	TListaCalendario tabla_en_lista=Lista();
-	TListaPos actual=lista.Primera();
-	TListaPos actual_tabla=tabla_en_lista.Primera(); //volcamos tabla a una lista
-	
-	int pos_en_lista=1;
-	int pos_en_listatabla=1;
-	
-	while (!actual.EsVacia() && Tamanyo()>0)
+	bool salir;
+
+	if(!lista.EsVacia())
 	{
-		if(tabla_en_lista.Buscar(lista.Obtener(actual)))//Entra si es encontrado en la tabla
+		TListaCalendario tabla_en_lista=Lista();
+		TListaPos actual=lista.Primera();
+		TListaPos actual_tabla=tabla_en_lista.Primera(); //volcamos tabla a una lista
+		
+		int pos_en_lista=1;
+		int pos_en_listatabla=1;
+		
+		while (!actual.EsVacia() && Tamanyo()>0)
 		{
-			while(!actual_tabla.EsVacia())
+			salir=false;
+			if(tabla_en_lista.Buscar(lista.Obtener(actual)))//Entra si es encontrado en la tabla
 			{
-				if (lista.Obtener(actual)==tabla_en_lista.Obtener(actual_tabla))
+				while(!actual_tabla.EsVacia() && !salir)
 				{
-					result[pos_en_lista]=pos_en_listatabla;
-					actual_tabla=actual_tabla.Siguiente();
-					pos_en_listatabla++;
-				}
-				else
-				{
-					actual_tabla=actual_tabla.Siguiente();
-					pos_en_listatabla++;
+					if (lista.Obtener(actual)==tabla_en_lista.Obtener(actual_tabla))
+					{
+						result[pos_en_lista]=pos_en_listatabla;
+						//~ actual_tabla=actual_tabla.Siguiente();
+						salir=true;
+						pos_en_listatabla++;
+					}
+					else
+					{
+						actual_tabla=actual_tabla.Siguiente();
+						pos_en_listatabla++;
+					}
+					
 				}
 				
 			}
-			
+			else//No esta en la tabla hash
+			{
+				result[pos_en_lista]=0;
+			}
+			pos_en_lista++;
+			actual=actual.Siguiente();
+			actual_tabla=tabla_en_lista.Primera();
 		}
-		else//No esta en la tabla hash
-		{
-			result[pos_en_lista]=0;
-		}
-		pos_en_lista++;
-		actual=actual.Siguiente();
-	}
+	}else result=NULL;
 	
 	return result;
 }
+
+ostream& operator<<( ostream & os, THASHCalendario & hash)
+{
+	os<<"#";
+
+	for(int i=0; i<hash.Tamanyo(); i++)
+	{
+		if(i>0)os<<" ";
+		os<<"("<<i<<") "<<hash.tabla[i];
+	};
+	
+	os<<"#";
+	return os;
+};

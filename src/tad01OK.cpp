@@ -1,16 +1,14 @@
-#include <iostream>
-#include "tabbcalendario.h"
-using namespace std;
-
+// Constructores vacíos
+#include "thashcalendario.h"
 int
-main(void)
+main()
 {
-/************************************************/
-/***************** CONSTRUCTOR */
-/************************************************/
-  TABBCalendario a, b;
+  THASHCalendario a, b(5), c(100);
+  THASHCalendario d(c);
 
   cout << "No hace nada" << endl;
 
-  return 0;
+ 
+    return 0; 
 }
+

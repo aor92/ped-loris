@@ -1,31 +1,26 @@
-#include <iostream>
-
-using namespace std;
-
-#include "tcalendario.h"
-#include "tpilacalendario.h"
-
+// Borrar
+#include "thashcalendario.h"
 int
-main(void)
+main()
 {
-  TCalendario c1(14, 12, 1966, (char*) "Fecha Correcta");
-  TCalendario c2(1, 1, 1954, (char*) "Fecha Correcta");
-  TPilaCalendario p1, p2;
-      
-  p1.Apilar(c1); 
-  p1.Apilar(c2);
-  p2.Apilar(c1); 
-  p2.Apilar(c2);
+  THASHCalendario a,b(4);
+ 
+  TCalendario c1(1,1,2011,(const char *)"Fecha1");
+  TCalendario c2(2,1,2011,(const char *)"Fecha2");
+  TCalendario c3(3,1,2011,(const char *)"Fecha3");
+  TCalendario c4(4,1,2011,(const char *)"Fecha4");
+  TCalendario c5(5,1,2011,(const char *)"Fecha5");
 
-  if(p1 == p2) 
-	cout << "iguales" << endl;
-  else 
-	cout << "distintas" << endl;
+  b.Insertar(c1);
+  b.Insertar(c2);
+  b.Insertar(c3);
+  b.Insertar(c4);
+ 
+ cout<<b.Buscar(c5)<<endl;
+  if ( b.Borrar(c4) )  cout<<"Elemento borrado" <<endl;
+  else cout<<"Elemento no borrado" <<endl;
+  if ( b.Borrar(c5) ) cout<<"Elemento borrado" <<endl;
+  else cout<<"Elemento no borrado" <<endl;
 
-  if(p1 != p2) 
-	cout << "distintas" << endl;
-  else 
-	cout << "iguales" << endl;
-
-  return 0;
+  return 0; 
 }
