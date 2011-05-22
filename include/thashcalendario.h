@@ -12,7 +12,7 @@ class THASHCalendario
 		int tamanyo;
 		TListaCalendario *tabla;
 		
-		int H(const TCalendario);
+		int H(const TCalendario) const;
 	
 	public:
 	
@@ -31,11 +31,11 @@ class THASHCalendario
 		// Devuelve TRUE si el elemento está en la tabla, FALSE en caso contrario
 		bool Buscar( const TCalendario &);
 		// Devuelve el tamaño de la tabla
-		int Tamanyo();
+		int Tamanyo() const;
 		// Devuelve el número de elementos en la tabla
-		int NElementos();
+		int NElementos() const;
 		// Devuelve todos los elementos de la tabla en una lista ordenada
-		TListaCalendario Lista();
+		TListaCalendario Lista() const;
 		// Búsqueda en un HASH a través de una lista auxiliar
 		int* BuscarLista( TListaCalendario &);
 

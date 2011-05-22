@@ -94,47 +94,65 @@ bool
 THASHCalendario::Insertar( const TCalendario &cal)
 {
 	bool insertado = false;
+	int pos=H(cal);
 	
-	
+	if (tabla!=NULL && Tamanyo()>0)
+	{
+		tabla[pos].Insertar(cal);
+		insertado=true;
+	}
 	
 	return insertado;
 }
 
 int
-THASHCalendario::H(const TCalendario c )
+THASHCalendario::H(const TCalendario c ) const 
 {
-	//Como juntar los int del calendario?? strings???
-	string sAux;
-	int modulo = 0, numeFecha = 0;
+	int a_colocar;
 	
+	a_colocar=c.Dia()*1000000+c.Mes()*10000+c.Anyo();
 	
-	//Prueba, si no usamos "itoa()"
-	sAux = c.Dia() + c.Mes() + c.Anyo();
-	
-	modulo = numeFecha % tamanyo;
-	
-	return modulo;
+	return a_colocar % Tamanyo();
 }
 
 bool
 THASHCalendario::Borrar( const TCalendario &cal)
 {
+	bool insertado = false;
+	int pos=H(cal);
 	
+	if (tabla!=NULL && Tamanyo()>0)
+	{
+		tabla[pos].Borrar(cal);
+		insertado=true;
+	}
+	
+	return insertado;
 }
 
 bool
 THASHCalendario::Buscar( const TCalendario &cal)
 {
+	bool insertado = false;
+	int pos=H(cal);
+	
+	if (tabla!=NULL && Tamanyo()>0)
+	{
+		tabla[pos].Buscar(cal);
+		insertado=true;
+	}
+	
+	return insertado;
 }
 
 int
-THASHCalendario::Tamanyo()
+THASHCalendario::Tamanyo() const 
 {
 	return tamanyo;
 }
 
 int
-THASHCalendario::NElementos()
+THASHCalendario::NElementos() const
 {
 	int sumares = 0;
 	
@@ -148,22 +166,30 @@ THASHCalendario::NElementos()
 }
 
 TListaCalendario
-THASHCalendario::Lista()
+THASHCalendario::Lista() const
 {
 	TListaCalendario listaRes;
 	
-	int totalElem = 0;
+	//~ int totalElem = 0;
 	//~ totalElem = tabla.NElementos();
+	//~ 
+	//~ TListaPos lPos;
+	//~ 
+	//~ for(int i=0; i < tamanyo; i++)
+	//~ {
+		//~ for( lPos = tabla[i].Primera(); !lPos.EsVacia() ; lPos.Siguiente() )
+		//~ {
+			//~ listaRes.Insertar(tabla[i].Obtener(lPos));
+		//~ }
+	//~ }
+	//~ 
+	//~ return listaRes;
 	
-	TListaPos lPos;
-	
-	for(int i=0; i < tamanyo; i++)
+	for (int i = 0; i < Tamanyo(); i++)
 	{
-		for( lPos = tabla[i].Primera(); !lPos.EsVacia() ; lPos.Siguiente() )
-		{
-			listaRes.Insertar(tabla[i].Obtener(lPos));
-		}
+		listaRes=listaRes+tabla[i];//el operador suma de las listas lo permite.
 	}
 	
 	return listaRes;
+	
 }
