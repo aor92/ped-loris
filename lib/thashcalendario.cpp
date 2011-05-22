@@ -208,7 +208,7 @@ THASHCalendario::BuscarLista(const TListaCalendario& lista)const
 		TListaPos actual=lista.Primera();
 		TListaPos actual_tabla=tabla_en_lista.Primera(); //volcamos tabla a una lista
 		
-		int pos_en_lista=1;
+		int pos_en_lista=0;
 		int pos_en_listatabla=1;
 		
 		while (!actual.EsVacia() && Tamanyo()>0)
@@ -216,14 +216,13 @@ THASHCalendario::BuscarLista(const TListaCalendario& lista)const
 			salir=false;
 			if(tabla_en_lista.Buscar(lista.Obtener(actual)))//Entra si es encontrado en la tabla
 			{
-				while(!actual_tabla.EsVacia() && !salir)
+				while(!salir)
 				{
 					if (lista.Obtener(actual)==tabla_en_lista.Obtener(actual_tabla))
 					{
 						result[pos_en_lista]=pos_en_listatabla;
 						//~ actual_tabla=actual_tabla.Siguiente();
 						salir=true;
-						pos_en_listatabla++;
 					}
 					else
 					{
@@ -241,6 +240,7 @@ THASHCalendario::BuscarLista(const TListaCalendario& lista)const
 			pos_en_lista++;
 			actual=actual.Siguiente();
 			actual_tabla=tabla_en_lista.Primera();
+			pos_en_listatabla=1;
 		}
 	}else result=NULL;
 	
