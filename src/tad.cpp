@@ -1,4 +1,9 @@
-//BuscarLista
+#include <iostream>
+#include "tcalendario.h"
+#include "tvectorcalendario.h"
+#include "tlistacalendario.h"
+#include "tabbcalendario.h"
+#include "tavlcalendario.h"
 #include <iostream>
 #include "tcalendario.h"
 #include "tvectorcalendario.h"
@@ -6,53 +11,19 @@
 #include "tabbcalendario.h"
 #include "tavlcalendario.h"
 #include "thashcalendario.h"
+using namespace std;
+
 int
-main()
+main(void)
 {
-	/*
-  THASHCalendario a, b(5);
-  TListaCalendario tc;
+/************************************************/
+/***************** INORDEN, PREORDEN, POSTORDEN */
+/************************************************/
 
-  TCalendario c1(1,1,2011,(const char *)"Fecha1");
-  TCalendario c2(2,1,2011,(const char *)"Fecha2");
-  TCalendario c3(3,1,2011,(const char *)"Fecha3");
-  TCalendario c4(4,1,2011,(const char *)"Fecha4");
-  TCalendario c5(5,1,2011,(const char *)"Fecha5");
-  TCalendario c6(6,1,2011,(const char *)"Fecha6");
-  TCalendario c7(7,1,2011,(const char *)"Fecha7");
-  TCalendario c8(8,1,2011,(const char *)"Fecha8");
 
-  int *v = b.BuscarLista(tc);
- 
-  if (!v) cout<<"La lista estaba vacia"<<endl;
-  else cout<<"La lista no estaba vacia"<<endl;
- 
-  b.Insertar(c1);
-  b.Insertar(c2);
-  b.Insertar(c3);
-  b.Insertar(c4);
-  b.Insertar(c5);
-  b.Insertar(c6);
-  b.Insertar(c8);
-  
-  tc.Insertar(c1);
-  tc.Insertar(c6);
-  tc.Insertar(c7);
-  tc.Insertar(c8);
- 
-  v = b.BuscarLista(tc);
-  for (int i=0; i<tc.Longitud(); i++)
-	cout<<v[i]<<" ";
-  cout<<endl;
-  delete [] v;
- 
-    return 0;
-    * 
-    * */
-    
-    
 TABBCalendario a;
 TVectorCalendario vec1, vec2, vec3;
+return 0; 
 
 TCalendario c1(1,1,2011,"Fecha1");
 TCalendario c2(2,1,2011,"Fecha2");
@@ -103,18 +74,4 @@ hash.Insertar(c2);
 cout << hash << endl;
 }
 return 0; 
-
-
-/* SALIDA
-Inorden: [(1) 01/01/2011 "Fecha1", (2) 02/01/2011 "Fecha2", (3) 03/01/2011 "Fecha3", (4) 05/01/2011 "Fecha5", (5) 06/01/2011 "Fecha6"]
-Preorden: [(1) 05/01/2011 "Fecha5", (2) 02/01/2011 "Fecha2", (3) 01/01/2011 "Fecha1", (4) 03/01/2011 "Fecha3", (5) 06/01/2011 "Fecha6"]
-Postorden: [(1) 01/01/2011 "Fecha1", (2) 03/01/2011 "Fecha3", (3) 02/01/2011 "Fecha2", (4) 06/01/2011 "Fecha6", (5) 05/01/2011 "Fecha5"]
-Insertado
-No insertado
-Altura: 3
-[(1) 02/01/2011 "dos", (2) 01/01/2011 "uno", (3) 03/01/2011 "tres", (4) 04/01/2011 "cuatro"]
-#(0) <> (1) <01/01/2011 "Fecha1" 02/01/2011 "Fecha2"> (2) <> (3) <> (4) <>#*/ 
 }
-
-
-

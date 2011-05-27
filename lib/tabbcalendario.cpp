@@ -295,18 +295,13 @@ TABBCalendario::Raiz()const
 int
 TABBCalendario::Altura()const 
 {
-	int hi=0;
-	int hd=0;
-	
-	if (EsVacio())
-	{
-		return hi+hd;
+	int a1=0,a2=0;
+	if(raiz!= NULL){//wtf
+		a1=(raiz->iz).Altura();
+		a2=(raiz->de).Altura();
+		return (1 + (a1 < a2 ? a2 : a1));
 	}
-	else
-	{
-		hd+=1+raiz->de.Altura();
-		hi+=1+raiz->iz.Altura();
-	}
+	else return 0;
 }
 
 int 

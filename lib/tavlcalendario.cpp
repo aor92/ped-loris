@@ -149,28 +149,13 @@ TAVLCalendario::NodosHoja()const
 int
 TAVLCalendario::Altura() const
 {
-	/*
-	int hd=0;
-	int hi=0;
-	
-	if (EsVacio())
-	{
-		return hd+hi;
+	int a1=0,a2=0;
+	if(raiz!= NULL){//wtf
+		a1=(raiz->iz).Altura();
+		a2=(raiz->de).Altura();
+		return (1 + (a1 < a2 ? a2 : a1));
 	}
-	else
-	{
-		hd+=1+raiz->de.Altura();
-		hi+=1+raiz->iz.Altura();
-	}*/
-	int aiz=0,ade=0;
-	
-	
-	if(raiz!= NULL)
-	{
-		aiz=(raiz->iz).Altura();
-		ade=(raiz->de).Altura();
-		return (1 + (aiz < ade ? ade : aiz));
-	}
+	else return 0;
 	else return 0;
 }
 
