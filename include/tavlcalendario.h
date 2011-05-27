@@ -26,6 +26,7 @@ class TAVLCalendario
 {
 	friend class TNodoAVL;
 	friend ostream& operator<<(ostream&,const TAVLCalendario&);
+	
 	private:
 		
 		/** \brief raiz
@@ -161,14 +162,20 @@ class TAVLCalendario
 		*  \param obj Calendario que queremos borrar en el AVL
 		*/
 		bool Borrar( const TCalendario &);
-		// Devuelve el elemento TCalendario raíz del árbol AVL
+		
+		/** \brief Metodo Borrar de AVL
+		*  Devuelve la raiz del arbol AVL
+		*/
 		TCalendario Raiz() const;
 	
 		
 
 };
 
-
+/** \brief Clase tnodoavl
+*
+* 	La clase tnodoavl conforma los nodos del avlcalendario
+*/
 class TNodoAVL
 {
 	friend class TAVLCalendario;
@@ -177,25 +184,52 @@ class TNodoAVL
 	
 	private:
 		
+		/** \brief item
+		* item que contiene el nodo, en este caso un tcalendario*/
 		TCalendario item;
 		
+		/** \brief iz
+		* rama izquierda del nodo*/
 		TAVLCalendario iz;
 		
+		/** \brief de
+		* rama derecha del nodo*/
 		TAVLCalendario de;
 		
+		/** \brief fe
+		* factor de equilibrio*/
 		int fe;
 		
+		
+		/** \brief Funcion auxiliar para eliminar
+		*  Elimina el contenido del nodo de forma recursiva
+		*  \param n nodo que toca borrar y a partir del que recorremos de forma recursiva
+		*/
 		void Eliminar(TNodoAVL &);
 		
 	public:
 	
-		//Constructor por defecto
+		/** \brief Constructor por defecto del tnodoAVL
+		*  Crea un nodo vacio
+		*/
 		TNodoAVL ();
-		//Constructor copia
+		
+		/** \brief Constructor de copia de nodoAVL
+		*  Creamos un nuevo nodo a partir de otro.
+		*  \param n nodo desde el que creamos a su imagen
+		*/
 		TNodoAVL (const TNodoAVL &);
-		//Destructor
+		
+		
+		/** \brief Destructor de tnodoavl
+		*  Elimina el contenido del nodo
+		*/
 		~TNodoAVL ();
-		// Sobrecarga del operador asignación
+		
+		/** \brief Funcion de asignacion
+		*  Copia el contenido del nodo pasado por parametro al que llama el operador
+		*  \param n nodo desde el que asignamos
+		*/
 		TNodoAVL & operator=( const TNodoAVL &);
 
 };
