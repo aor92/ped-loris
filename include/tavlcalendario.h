@@ -163,7 +163,7 @@ class TAVLCalendario
 		*/
 		bool Borrar( const TCalendario &);
 		
-		/** \brief Metodo Borrar de AVL
+		/** \brief Metodo raiz de AVL
 		*  Devuelve la raiz del arbol AVL
 		*/
 		TCalendario Raiz() const;
