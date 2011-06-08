@@ -331,7 +331,8 @@ bool TCalendario::operator!=(const TCalendario &en)const{
 	return(!((*this)==en));
 }
 
-bool TCalendario::ModFecha(const int dia,const int mes,const int anyo){
+bool TCalendario::ModFecha(const int dia,const int mes,const int anyo)
+{
 	bool correcto=FechaCorrecta(dia,mes,anyo);
 	if(correcto){
 		this->dia=dia;

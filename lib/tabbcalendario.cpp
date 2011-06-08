@@ -296,7 +296,8 @@ int
 TABBCalendario::Altura()const 
 {
 	int a1=0,a2=0;
-	if(raiz!= NULL){//wtf
+	if(raiz!= NULL)
+	{
 		a1=(raiz->iz).Altura();
 		a2=(raiz->de).Altura();
 		return (1 + (a1 < a2 ? a2 : a1));
@@ -307,23 +308,31 @@ TABBCalendario::Altura()const
 int 
 TABBCalendario::Nodos() const
 {
-	int num=0;
-	if(raiz!=NULL)
+	   
+	int n = 0;
+	if (raiz != NULL)
 	{
-		num=1;
-		if(!(raiz->iz).EsVacio()) num=num+raiz->iz.Nodos();
-		if(!(raiz->de).EsVacio()) num=num+raiz->de.Nodos();
+			n = 1 + raiz->iz.Nodos() + raiz->de.Nodos();
 	}
-	return num;
+	return n;
 }
 
 int
 TABBCalendario::NodosHoja()const
 {
-	if (!EsVacio() && raiz->iz.EsVacio() && raiz->de.EsVacio())
-		return 1;
-	else
-		return raiz->iz.NodosHoja() + raiz->de.NodosHoja();
+	int n = 0;
+	if (raiz != NULL)
+	{
+		if (raiz->iz.raiz == NULL && raiz->de.raiz == NULL)
+		{
+				n = 1;
+		}
+		else
+		{
+				n = raiz->iz.NodosHoja() + raiz->de.NodosHoja();
+		}
+	}
+	return n;
 }
 
 TVectorCalendario 
@@ -421,7 +430,11 @@ int *
 TABBCalendario::BuscarLista( const TListaCalendario& lista ) const
 {
 	TListaPos actual=lista.Primera(),anterior;
-	int* tmp=new int[lista.Longitud()];
+	int* tmp=NULL;
+	
+	if(!lista.EsVacia())
+	{
+	tmp=new int[lista.Longitud()];
 	int i=0;
 	TVectorCalendario v=Inorden();
 	bool salir=false;
@@ -432,8 +445,14 @@ TABBCalendario::BuscarLista( const TListaCalendario& lista ) const
 			{
 				if(v[j].Anyo()==lista.Obtener(actual).Anyo())
 				{
+					if (v[j-1].Anyo() == 1900)//caso particular de un tad ??
+					{
+						tmp[i]=0;
+					}
+					else{
 					tmp[i]=v[j-1].Anyo();
 					salir=true;
+				}
 				}
 				else
 				{
@@ -447,6 +466,7 @@ TABBCalendario::BuscarLista( const TListaCalendario& lista ) const
 		i++;
 		salir=false;
 	}
+}
 	return tmp;
 }
 

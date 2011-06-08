@@ -126,31 +126,38 @@ TAVLCalendario::EsVacio() const
 int 
 TAVLCalendario::Nodos() const
 {
-	int num=0;
-		if (raiz!=NULL)
-		{
-			num=1;
-			if(!(raiz->iz).EsVacio()) num=num+raiz->iz.Nodos();
-			if(!(raiz->de).EsVacio()) num=num+raiz->de.Nodos();
-		}
-	return num;
+	int n = 0;
+	if (raiz != NULL)
+	{
+			n = 1 + raiz->iz.Nodos() + raiz->de.Nodos();
+	}
+	return n;
 }
 
 int 
 TAVLCalendario::NodosHoja()const
 {
-	if (EsVacio() && raiz->iz.EsVacio() && raiz->de.EsVacio() )
+	int n = 0;
+	if (raiz != NULL)
 	{
-		return 1;
+		if (raiz->iz.raiz == NULL && raiz->de.raiz == NULL)
+		{
+				n = 1;
+		}
+		else
+		{
+				n = raiz->iz.NodosHoja() + raiz->de.NodosHoja();
+		}
 	}
-	else raiz->iz.NodosHoja() + raiz->de.NodosHoja();
+	return n;
 }
 
 int
 TAVLCalendario::Altura() const
 {
 	int a1=0,a2=0;
-	if(raiz!= NULL){//wtf
+	if(raiz!= NULL)
+	{//wtf
 		a1=(raiz->iz).Altura();
 		a2=(raiz->de).Altura();
 		return (1 + (a1 < a2 ? a2 : a1));
@@ -225,16 +232,26 @@ TAVLCalendario::PostordenAux(TVectorCalendario& v, int& pos) const
 bool 
 TAVLCalendario::Buscar( const TCalendario &obj)
 {
-		if (!EsVacio()) return false;
-		else if (obj>raiz->item)
+bool ret = false;
+if (raiz != NULL)
+{
+		if (raiz->item == obj)
 		{
-			return raiz->de.Buscar(obj);
+				ret = true;
 		}
-		else if (obj<raiz->item)
+		else
 		{
-			return raiz->iz.Buscar(obj);
+				if (obj < raiz->item)
+				{
+						ret = raiz->iz.Buscar(obj);
+				}
+				else
+				{
+						ret = raiz->de.Buscar(obj);
+				}
 		}
-		else if (obj==raiz->item) return true;
+}
+return ret;
 			
 }
 
