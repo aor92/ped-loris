@@ -24,13 +24,12 @@ THASHCalendario::THASHCalendario(int t)
 
 THASHCalendario::~THASHCalendario()
 {
+	tamanyo = 0;
 	if (tabla!=NULL)
 	{
 		delete[] tabla;
 	}
 	tabla=NULL;
-	
-	tamanyo = 0;
 }
 
 THASHCalendario::THASHCalendario(const THASHCalendario& cop)
@@ -111,10 +110,15 @@ int
 THASHCalendario::H(const TCalendario c ) const 
 {
 	int a_colocar;
+	int res=0;
 	
-	a_colocar=c.Dia()*1000000+c.Mes()*10000+c.Anyo();
+	if (Tamanyo()>0)
+	{
+		a_colocar=c.Dia()*1000000+c.Mes()*10000+c.Anyo();
+		res=a_colocar % Tamanyo();
+	}
 	
-	return a_colocar % Tamanyo();
+	return res;
 }
 
 bool
